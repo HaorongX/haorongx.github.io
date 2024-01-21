@@ -114,10 +114,6 @@ menu:
       name: Tags
       url: /tags/
       weight: 20
-    - identifier: archive
-      name: Archives
-      url: /archive/
-      weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
