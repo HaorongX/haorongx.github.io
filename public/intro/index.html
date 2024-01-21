@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+  <meta name="author" content="">
+
+  
+  
+  <meta name="description" content="Introduction PostgreSQL, as the most advanced open source relational database, has released the 16th version on November 9, 2023. As a developer who had been interested in Postgres for so long, I was always seeking a chance to dive into the kernel of Postgres. However, I found that although the official document and some books give us a fairly general view of the internals of Postgres, there’s no such a document which explains the entire system from the top to the bottom.">
+  
+
+  
+  <link rel="icon" href="favicon.ico">
+
+  
+  
+  <meta name="keywords" content=" hugo  latex  theme ">
+  
+
+  
+  
+
+  
+  <meta property="og:title" content="A Dive Into PostreSQL Internals" />
+<meta property="og:description" content="Introduction PostgreSQL, as the most advanced open source relational database, has released the 16th version on November 9, 2023. As a developer who had been interested in Postgres for so long, I was always seeking a chance to dive into the kernel of Postgres. However, I found that although the official document and some books give us a fairly general view of the internals of Postgres, there’s no such a document which explains the entire system from the top to the bottom." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/intro/" /><meta property="article:section" content="" />
+
+
+
+
+
+  
+  <link rel="canonical" href="/intro/">
+
+  
+  
+  <meta itemprop="name" content="A Dive Into PostreSQL Internals">
+<meta itemprop="description" content="Introduction PostgreSQL, as the most advanced open source relational database, has released the 16th version on November 9, 2023. As a developer who had been interested in Postgres for so long, I was always seeking a chance to dive into the kernel of Postgres. However, I found that although the official document and some books give us a fairly general view of the internals of Postgres, there’s no such a document which explains the entire system from the top to the bottom.">
+
+<meta itemprop="wordCount" content="163">
+<meta itemprop="keywords" content="" />
+
+  
+  <link media="screen" rel="stylesheet" href='css/common.css'>
+  <link media="screen" rel="stylesheet" href='css/content.css'>
+
+  
+  
+  <title>A Dive Into PostreSQL Internals - </title>
+  
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="A Dive Into PostreSQL Internals"/>
+<meta name="twitter:description" content="Introduction PostgreSQL, as the most advanced open source relational database, has released the 16th version on November 9, 2023. As a developer who had been interested in Postgres for so long, I was always seeking a chance to dive into the kernel of Postgres. However, I found that although the official document and some books give us a fairly general view of the internals of Postgres, there’s no such a document which explains the entire system from the top to the bottom."/>
+
+
+  
+<link rel="stylesheet" href='css/single.css'>
+
+</head>
+
+<body>
+  <div id="wrapper">
+    <header id="header">
+  <h1>
+    <a href=""></a>
+  </h1>
+
+  <nav>
+    
+    <span class="nav-bar-item">
+      <a class="link" href="/">Post</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      <a class="link" href="/post/">Archives</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      <a class="link" href="/about/">About</a>
+    </span>
+    
+  </nav>
+</header>
+
+    
+<main id="main" class="post">
+  
+  <article class="content">
+    <h2 id="introduction">Introduction</h2>
+<p>PostgreSQL, as the most advanced open source relational database, has released the 16th version on November 9, 2023. As a developer who had been interested in Postgres for so long, I was always seeking a chance to dive into the kernel of Postgres. However, I found that although the official document and some books give us a fairly general view of the internals of Postgres, there’s no such a document which explains the entire system from the top to the bottom. When I say “top” and “bottom”, actually they refer to the abstraction and the source code, respectively.</p>
+<p>This fact makes it pretty hard to understand the source code. What’s worse, Postgres itself is complicated enough to bring up confusion. So that led me to the conclusion that maybe I should write such a document.</p>
+<p>In the following posts, I’ll take you through the design and the source code of PostgreSQL. Our journey begins at the most complicated subsystem – Query processing.</p>
+
+  </article>
+  
+</main>
+
+    <footer id="footer">
+  <div>
+    <span>© 2019</span> - <span>2024</span>
+  </div>
+
+  <div>
+    <span>Powered by </span>
+    <a class="link" href="https://gohugo.io/">Hugo</a>
+    <span> 🍦 Theme </span>
+    <a class="link" href="https://github.com/queensferryme/hugo-theme-texify">TeXify</a>
+  </div>
+
+  <div class="footnote">
+    <span>Follow me on <a class=link href=https://github.com/queensferryme>GitHub</a>,
+<a class=link href=https://twitter.com/queensferryme>Twitter</a> or
+<a class=link href=/index.xml>RSS</a> |
+<a class=link href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank rel=noopener>CC BY-NC-SA 4.0</a>
+</span>
+  </div>
+</footer>
+
+  </div>
+
+  
+  
+
+  
+  
+
+  
+  
+
+</body>
+
+</html>
