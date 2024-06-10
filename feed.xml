@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>Haorong Xu</title>
+    <link href="https://haorongx.github.io/feed.xml" rel="self" />
+    <link href="https://haorongx.github.io" />
+    <updated>2024-06-10T10:42:31+08:00</updated>
+    <author>
+        <name>Haorong Xu</name>
+    </author>
+    <id>https://haorongx.github.io</id>
+
+    <entry>
+        <title>Introduction to Compiler Design</title>
+        <author>
+            <name>Haorong Xu</name>
+        </author>
+        <link href="https://haorongx.github.io/introduction-to-compiler-design.html"/>
+        <id>https://haorongx.github.io/introduction-to-compiler-design.html</id>
+            <category term="Compiler Design"/>
+
+        <updated>2024-06-10T10:42:31+08:00</updated>
+            <summary>
+                <![CDATA[
+                    What are we talking about when we mention “compiler”? Recently I’ve been studying the design of compilers. Unfortunately, I got stuck right after getting started because of the following image: This diagram illustrates the main components of a compiler, which contains a part called “Compiler(cc1)”.
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2 id="what-are-we-talking-about-when-we-mention-compiler">What are we talking about when we mention “compiler”?</h2>
+<p>Recently I’ve been studying the design of compilers. Unfortunately, I got stuck right after getting started because of the following image:</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/4/fig1.png" alt="fig1" width="909" height="82"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/4/responsive/fig1-xs.png 300w ,https://haorongx.github.io/media/posts/4/responsive/fig1-sm.png 480w ,https://haorongx.github.io/media/posts/4/responsive/fig1-md.png 768w ,https://haorongx.github.io/media/posts/4/responsive/fig1-lg.png 1024w ,https://haorongx.github.io/media/posts/4/responsive/fig1-xl.png 1360w ,https://haorongx.github.io/media/posts/4/responsive/fig1-2xl.png 1600w"></figure><p>This diagram illustrates the main components of a compiler, which contains a part called “Compiler(cc1)”. This appears completely insane to me since I always refer gcc as compiler, then what the heck is “cc1”? </p><p>Basically, when we talk about compilation we actually mean the process of translating high-level language into machine-level language(binary, for example). This process is performed by a <strong>language-processing system</strong>, which is controlled by a program called <strong>compiler driver</strong>(e.g. cc, gcc, clang). A language-processing system consists pre-processor, compiler, assembler, and linker. As you can see, the so-called compiler is just a component of the language-processing system, and its job is to translate source code into assembly code. The assembler, linker, and other stuff are not regarded as part of the compiler.</p><h2 id="structure-of-the-language-processing-system">Structure of the language-processing system</h2>
+<p>Now I have to ask you to look at figure 1 again, let’s break down this system and take a closer look at each part:</p><ul>
+<li><strong>Pre-processor</strong>: This program modifies the source code before the compilation process starts. Its main jobs include copying header files, calling macros, and handling conditional compilation directions(e.g. <code>#ifdef</code>).</li>
+<li><strong>Compiler</strong>: As we’ve already discussed in the previous section, the compiler takes the modified source code and translates it into assembly code.</li>
+<li><strong>Assembler</strong>: The assembler turns assembly code into <em>relocatable object file</em>, which can be linked with other object files to build up a large application</li>
+<li><strong>Linker</strong>: The linker performs the linking task. It deals with external memory addresses which refer to data in other files.</li>
+</ul>
+<h2 id="structure-of-the-compiler">Structure of the compiler</h2>
+<p>The compiler is probably the most complicated one in the entire system. Generally, compilers are divided into several phases, or passes. (Though very few compilers have only one pass)</p><p>Let’s take a typical two-pass compiler for example. The first pass, also known as the front end, consists of the following parts:</p><ul>
+<li>Lexical Analyzer(a.k.a scanner)</li>
+<li>Parser</li>
+<li>Code Generator</li>
+</ul>
+<p>The lexical analyzer breaks the source code into <em>lexemes</em>, and generates a <em>token</em> for each lexeme. The sequence of tokens will be fed to the parser, which builds a tree based on these tokens to represent the structure of the entire program. Eventually, the code generator generates code in an intermediate language(which is similar to assembly language, but it’s slightly different).</p><p>The reason why this pass is called <em>front end</em> is that the code generated is platform-independent. That means the same source code always produces the same intermediate code, regardless of your machine.</p><p>The second pass actually turns the intermediate representation of the program into assembly code, it includes:</p><ul>
+<li>Optimizer</li>
+<li>Back End</li>
+</ul>
+<p>The optimizer takes the intermediate code and performs some optimization, and finally the back end converts it into assembly code.</p><p>There’s an obvious advantage of having two passes rather than only one. It’s that we can create different front ends for multiple high-level languages(e.g. c, c++, etc.), and these front ends can share the same back end because all of them generate intermediate language code. Similarly, we can also implement different back ends for different machines, and they can work without changing the front end.</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/4/fig2.png" alt="fig2" width="386" height="264"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/4/responsive/fig2-xs.png 300w ,https://haorongx.github.io/media/posts/4/responsive/fig2-sm.png 480w ,https://haorongx.github.io/media/posts/4/responsive/fig2-md.png 768w ,https://haorongx.github.io/media/posts/4/responsive/fig2-lg.png 1024w ,https://haorongx.github.io/media/posts/4/responsive/fig2-xl.png 1360w ,https://haorongx.github.io/media/posts/4/responsive/fig2-2xl.png 1600w"></figure>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Lexical Analysis: The Basics</title>
+        <author>
+            <name>Haorong Xu</name>
+        </author>
+        <link href="https://haorongx.github.io/lexical-analysis-the-basics-2.html"/>
+        <id>https://haorongx.github.io/lexical-analysis-the-basics-2.html</id>
+            <category term="Lexical Analysis"/>
+            <category term="Compiler Design"/>
+
+        <updated>2024-06-10T10:40:19+08:00</updated>
+            <summary>
+                <![CDATA[
+                    The Role of Lexical Analyzer As I’ve mentioned in my previous post, the lexical analyzer is a component of a compiler that divides the source code into small pieces called lexemes and generates a token for each lexemes. The tokens generated will be fed to&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2 id="the-role-of-lexical-analyzer">The Role of Lexical Analyzer</h2>
+<p>As I’ve mentioned in my previous post, the lexical analyzer is a component of a compiler that divides the source code into small pieces called <em>lexemes</em> and generates a <em>token</em> for each lexemes. The tokens generated will be fed to the parser.</p><h3 id="lexemes-tokens-and-patterns">Lexemes, Tokens, and Patterns</h3>
+<ul>
+<li><strong>Lexemes</strong>: Lexemes are strings in the source code that cannot be further broken down, and a lexeme is the smallest lexical unit.</li>
+<li><strong>Tokens</strong>: Tokens are abstract representations of certain kinds of lexemes(which means a lexeme is an instance of a certain token).</li>
+</ul>
+<p>Here is a table from <em>Compilers Principles, Techniques, and Tools</em>, it perfectly illustrates the differences between lexemes and tokens.
+<figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/3/lexemes_and_tokens.png" alt="Lexemes &amp; Tokens" width="1229" height="397"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-xs.png 300w ,https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-sm.png 480w ,https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-md.png 768w ,https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-lg.png 1024w ,https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-xl.png 1360w ,https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-2xl.png 1600w"></figure></p><p>In conclusion, the advantages of having a lexical analyzer are as follows:</p><ul>
+<li>Allowing us to detect format errors. e.g. Misspelled identifiers, unknown characters, etc.</li>
+<li>Making parsing easier. By turning the entire source code into a sequence of tokens, the parser no longer needs to interact with original code which might includes comments, white spaces, and many other unnecessary stuff that make parsing difficult. As a consequence, the speed of parsing is increased.</li>
+</ul>
+<h2 id="implementation-of-a-basic-lexical-analyzer">Implementation of a Basic Lexical Analyzer</h2>
+<p>Let’s now make a lexical analyzer that processes arithmetical formulas(e.g. 1+2*3). Before we start coding, we should define the set of tokens and lexemes first. In this case, all possible lexemes and their corresponding tokens are as follows:
+<figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/3/token_set.png" alt="Tokens Set" width="858" height="337"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/3/responsive/token_set-xs.png 300w ,https://haorongx.github.io/media/posts/3/responsive/token_set-sm.png 480w ,https://haorongx.github.io/media/posts/3/responsive/token_set-md.png 768w ,https://haorongx.github.io/media/posts/3/responsive/token_set-lg.png 1024w ,https://haorongx.github.io/media/posts/3/responsive/token_set-xl.png 1360w ,https://haorongx.github.io/media/posts/3/responsive/token_set-2xl.png 1600w"></figure></p><p>The main feature we want to implement here is a function called get_next_token. This function fetches the next valid token in the input stream while ignoring all white spaces and detecting unidentifiable lexemes. This function will be called by the parser.</p><p>So firstly we want to define the type of tokens. Without doubt, we can simply give each token a unique integer as its index, and we can pass tokens as they are integers. However, sometimes we want to add some additional information. For example, we want the the INTV token to contain both its index and the value of the integer it represents. So we’ll need a structure to store tokens:</p><pre><code class="language-c">typedef enum {PLUS, MINUS, MULT, DIV, LP, RP, INTV, EOI} lex_type;
+typedef struct
+{
+    lex_type token;
+    int val;
+} token;
+</code></pre>
+<p>With <code>struct token</code> now we can implement get_next_token:</p><pre><code class="language-c">int get_next_token(token *t) // return 0 when read EOF or failed, otherwise return the length of lexeme
+{
+    char ch;
+    while((ch = getchar()) &amp;&amp; ch == &#39; &#39; &amp;&amp; ch == &#39;\t&#39; &amp;&amp; ch ==&#39;\n&#39;)
+        continue;
+
+    switch(ch) {
+        case &#39;+&#39;:   t-&gt;token = PLUS; return 1;
+        case &#39;-&#39;:   t-&gt;token = MINUS; return 1;
+        case &#39;*&#39;:   t-&gt;token = MULT; return 1;
+        case &#39;/&#39;:   t-&gt;token = DIV; return 1;
+        case &#39;(&#39;:   t-&gt;token = LP; return 1;
+        case &#39;)&#39;:   t-&gt;token = RP; return 1;
+        case EOF: case &#39;\n&#39;: case &#39; &#39;: case &#39;\t&#39;:   return 0;
+        default: // integers
+            if(!(&#39;0&#39; &lt;= ch &amp;&amp; ch &lt;= &#39;9&#39;)) { // not a number 
+                fprintf(stderr, &quot;Invalid lexeme %c!\n&quot;, ch);
+                return 0;
+            }
+            t-&gt;token = INTV;
+            int cnt = 1;
+            t-&gt;val = ch - &#39;0&#39;;
+            while((ch = getchar()) &amp;&amp; &#39;0&#39; &lt;= ch &amp;&amp; ch &lt;= &#39;9&#39;) {
+                t-&gt;val = t-&gt;val * 10 + ch - &#39;0&#39;;
+                ++ pos; ++ cnt;
+            }
+            ungetc(ch, stdin);
+            return cnt;
+    }
+}
+</code></pre>
+<h3 id="buffering">Buffering</h3>
+<p>The code above works just well. However, it’s not that efficient. As you probably know, I/O tasks are pretty expensive. While I/O devices are reading data(which is really slow), CPU can do no computational job but wait for them, so CPU is <em>blocked</em>. In the get_next_token function above, we read the input stream character by character, but if we read more characters in one go, then we don’t need to access I/O stream so frequently. Therefore, <strong>buffering</strong> the input saves a lot of time.</p><p>There are many ways to implement buffering, and a typical one is having one buffer array.</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/3/buffering.png" alt="Buffering" width="561" height="129"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/3/responsive/buffering-xs.png 300w ,https://haorongx.github.io/media/posts/3/responsive/buffering-sm.png 480w ,https://haorongx.github.io/media/posts/3/responsive/buffering-md.png 768w ,https://haorongx.github.io/media/posts/3/responsive/buffering-lg.png 1024w ,https://haorongx.github.io/media/posts/3/responsive/buffering-xl.png 1360w ,https://haorongx.github.io/media/posts/3/responsive/buffering-2xl.png 1600w"></figure><p>Whenever the pointer(pos) reaches the end of the buffer, we fill it with new input and then move pos to the first element. By using a buffer, we can stop using ungetc(), which only guarantees one pushback(so if another function uses ungetc then unknown errors will probably occur!).</p><p>But some lexical analyzer implement two buffers instead. Here is an example.</p><pre><code class="language-c">int get_next_token(FILE *restrict stream, token *t)
+{
+    t-&gt;token = EOI;
+    if(pos == NULL) { // Initialization
+        buf[0] = (char*) calloc(DISK_BLOCK_SIZE + 1, sizeof(char));
+        buf[1] = (char*) calloc(DISK_BLOCK_SIZE + 1, sizeof(char));
+        if(!fgets(buf[0], DISK_BLOCK_SIZE, stream)) return 0;
+        len = strlen(buf[0]); pos = buf[0];
+    }
+    while(skip_spaces()) {    
+        if(pos == &amp;buf[0][DISK_BLOCK_SIZE] || pos == &amp;buf[0][len]) { // Reached the end of buffer #1
+            if(!fgets(buf[1], DISK_BLOCK_SIZE, stream)) return 0;
+            len = strlen(buf[1]); pos = buf[1];
+        }
+        else if(pos == &amp;buf[1][DISK_BLOCK_SIZE] || pos == &amp;buf[1][len]) {
+            if(!fgets(buf[0], DISK_BLOCK_SIZE, stream)) return 0;
+            len = strlen(buf[0]); pos = buf[0];
+        }
+    }
+    int ret = 0;
+    switch(*pos) {
+        case &#39;+&#39;: t-&gt;token = PLUS; ret = 1; break;
+        case &#39;-&#39;: t-&gt;token = MINUS; ret = 1; break;
+        case &#39;*&#39;: t-&gt;token = MULT; ret = 1; break;
+        case &#39;/&#39;: t-&gt;token = DIV; ret = 1; break;
+        case &#39;(&#39;: t-&gt;token = LP; ret = 1; break;
+        case &#39;)&#39;: t-&gt;token = RP; ret = 1; break;
+        case EOF: ret = 0; break;
+        default:
+            if(!(&#39;0&#39; &lt;= *pos &amp;&amp; *pos &lt;= &#39;9&#39;)) {
+                fprintf(stderr, &quot;Invalid lexeme %c!\n&quot;, *pos);
+                return 0;
+            }
+            t-&gt;token = INTV; ret = read_int(&amp;t-&gt;val);
+            break;
+    }
+    ++ pos;
+    return ret;
+}
+</code></pre>
+<p>The following algorithm is the core idea of having two buffer:</p><pre><code class="language-c">switch(ch) {
+    case EOF:
+        if(at the end of buf1) {
+            fgets(buf2, ...);
+            pos = buf2;
+        }
+        else if(at the end of buf2) {
+            fgets(buf2, ...);
+            pos = buf2;
+        }
+        else // an EOF found in the middle of a buffer
+            return EOF; // we reached the end of input stream
+}
+</code></pre>
+<h2 id="lookahead">Lookahead</h2>
+<p>Sometimes the parser has to read the next token in the input stream without actually taking it from input. We thus need to provide a function to implement such feature. It’s just like the ungetc function, the only difference is that we are pushing back a lexeme here, instead of just a character.</p><pre><code class="language-c">static token t = {-1, 0};
+bool match(const token *p) // return true when p is the same type of token as the next one
+{
+    if(t.token == -1)
+        get_next_token(stdin, &amp;t);
+    return t.token == p-&gt;token;
+}
+void advance() // move forward to next token
+{
+    get_next_token(stdin, &amp;t);
+}
+</code></pre>
+
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>KMP Algorithm</title>
+        <author>
+            <name>Haorong Xu</name>
+        </author>
+        <link href="https://haorongx.github.io/kmp-algorithm.html"/>
+        <id>https://haorongx.github.io/kmp-algorithm.html</id>
+            <category term="Algorithm"/>
+
+        <updated>2024-06-10T10:31:25+08:00</updated>
+            <summary>
+                <![CDATA[
+                    KMP: Knuth-Morris-Pratt Algorithm The main problem KMP algorithm solves is locating a pattern string in a text string. To understand this algorithm, first let’s consider an obvious solution:(the text string is denoted as $T_{0…n-1}$ and the patterns string is denoted as $P_{0…m-1}$) Considering T =&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2 id="kmp-knuth-morris-pratt-algorithm">KMP: Knuth-Morris-Pratt Algorithm</h2>
+<p>The main problem KMP algorithm solves is locating a pattern string in a text string. To understand this algorithm, first let’s consider an obvious solution:(the text string is denoted as $T_{0…n-1}$ and the patterns string is denoted as $P_{0…m-1}$)</p><p>Considering T = <code>&quot;ABAACAADAABAABA&quot;</code> and P = <code>&quot;AABA&quot;</code>, we can compare T and P character by character until we reach the end of P, which is:</p><pre><code>T: ABAACAADAABAABA
+P: AABA 
+</code></pre>
+<p>Obviously the second one is not the same, so we move the pattern string forward a bit and go over again:</p><pre><code>T: ABAACAADAABAABA
+P:  AABA 
+</code></pre>
+<p>Again the first one doesn’t match.</p><pre><code>T: ABAACAADAABAABA
+P:   AABA 
+</code></pre>
+<p>You see, each time we move the pattern string forward a bit, and we compare the entire string over again. When we fail we move the pattern string again. We can repeat this process until we reach the end of text string. The problem is, this algorithm is too slow and its complexity is, shockingly, $O(nm)$.</p><p>But is it necessary to compare them so many times? Certainly not.</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/1/fig1-2.jpeg" alt="fig1" width="1245" height="606"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/1/responsive/fig1-2-xs.jpeg 300w ,https://haorongx.github.io/media/posts/1/responsive/fig1-2-sm.jpeg 480w ,https://haorongx.github.io/media/posts/1/responsive/fig1-2-md.jpeg 768w ,https://haorongx.github.io/media/posts/1/responsive/fig1-2-lg.jpeg 1024w ,https://haorongx.github.io/media/posts/1/responsive/fig1-2-xl.jpeg 1360w ,https://haorongx.github.io/media/posts/1/responsive/fig1-2-2xl.jpeg 1600w"></figure><p>As shown in fig 1, let’s suppose that we’ve compared $P_{0…j}$ with $T_{i-j…i-1}$(the yellow area) and found that $P_{j + 1} \neq T_{i}$. If a match is to start somewhere between $T_{i-j…i-1}$, then we can infer that:</p><ol>
+<li>It must begin with the prefix of P(so do all the matches found)</li>
+<li>It must match in $T$ up to $k$(obviously because the length of $P$ is bigger than the length of its prefix)</li>
+</ol>
+<p>This area is just the part highlighted in yellow, and it is <strong>the longest prefix of $P$ that is also proper suffix of $P_j$</strong>. So we’ll move $P$ to where the yellow areas are aligned.</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/1/fig2.jpeg" alt="fig2" width="1469" height="544"  sizes="100vw" srcset="https://haorongx.github.io/media/posts/1/responsive/fig2-xs.jpeg 300w ,https://haorongx.github.io/media/posts/1/responsive/fig2-sm.jpeg 480w ,https://haorongx.github.io/media/posts/1/responsive/fig2-md.jpeg 768w ,https://haorongx.github.io/media/posts/1/responsive/fig2-lg.jpeg 1024w ,https://haorongx.github.io/media/posts/1/responsive/fig2-xl.jpeg 1360w ,https://haorongx.github.io/media/posts/1/responsive/fig2-2xl.jpeg 1600w"></figure><p>If we store the length of such a string for each $P_j$ in a array, then the entire searching process can be represented by the following pseudo-code:</p><pre><code class="language-c">int mismatch[...];
+char *t, *p; // text string &amp; pattern string
+void search() {
+    int n = strlen(t + 1), m = strlen(p + 1);
+    int i, j = 0;
+    for(i = 1; i &lt;= n; ++ i) { // assume that the index begins from 1
+        while(j &gt; 0 &amp;&amp; p[j + 1] != t[i])
+            j = mismatch[j];
+        if(p[j + 1] == t[i])
+            ++ j;
+        if(j == m) {
+            printf(&quot;a match found at %d\n&quot;, i - m + 1);
+            j = mismatch[j];
+        }
+    }
+}
+</code></pre>
+<p>The <code>while</code> loop might seem confusing so we’ll explain it deeper. The main purpose of this loop is to ensure that $P_{0…j + 1}$ is correspondent to $T_{i - j + 1 … i}$, which is basically the highlighted part in fig 1.2.</p><p>Now the rest part is to compute <code>mismatch</code>, before we explain it, I’ll show the code first:</p><pre><code class="language-c">void init() {
+    int m = strlen(p + 1);
+    int i, j = 0;
+    mismatch[0] = mismatch [1] = 0;
+    for(i = 2; i &lt;= m; ++ i) {
+        while(j &gt; 0 &amp;&amp; p[j + 1] != p[i])
+            j = mismatch[j];
+        if(p[j + 1] == p[i])
+            ++ j;
+        mismatch[i] = j;
+    }
+}
+</code></pre>
+<p>Surprisingly it’s very similar to the <code>search()</code> function but this time $T$ is replaced by $P$. Indeed, it makes sense because this process just extend the substring where the prefix of $P$ matches the suffix of $T$, character by character. And by replace $T$ we can find the longest prefix &amp; suffix of $P$.</p>
+            ]]>
+        </content>
+    </entry>
+</feed>

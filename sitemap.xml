@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://haorongx.github.io/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+<loc>https://haorongx.github.io/</loc>
+</url>
+<url>
+<loc>https://haorongx.github.io/introduction-to-compiler-design.html</loc>
+<lastmod>2024-06-10T10:42:31+08:00</lastmod>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/4/fig1.png</image:loc>
+<image:title><![CDATA[fig1]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/4/fig2.png</image:loc>
+<image:title><![CDATA[fig2]]></image:title>
+</image:image>
+</url>
+<url>
+<loc>https://haorongx.github.io/kmp-algorithm.html</loc>
+<lastmod>2024-06-10T10:35:17+08:00</lastmod>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/1/fig1-2.jpeg</image:loc>
+<image:title><![CDATA[fig1]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/1/fig2.jpeg</image:loc>
+<image:title><![CDATA[fig2]]></image:title>
+</image:image>
+</url>
+<url>
+<loc>https://haorongx.github.io/lexical-analysis-the-basics-2.html</loc>
+<lastmod>2024-06-10T10:41:06+08:00</lastmod>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/3/lexemes_and_tokens.png</image:loc>
+<image:title><![CDATA[Lexemes & Tokens]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/3/token_set.png</image:loc>
+<image:title><![CDATA[Tokens Set]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/3/buffering.png</image:loc>
+<image:title><![CDATA[Buffering]]></image:title>
+</image:image>
+</url>
+</urlset>

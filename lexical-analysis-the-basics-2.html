@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lexical Analysis: The Basics - Haorong Xu</title><meta name="description" content="The Role of Lexical Analyzer As I’ve mentioned in my previous post, the lexical analyzer is a component of a compiler that divides the source code into small pieces called lexemes and generates a token for each lexemes. The tokens generated will be fed to&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://haorongx.github.io/lexical-analysis-the-basics-2.html"><link rel="alternate" type="application/atom+xml" href="https://haorongx.github.io/feed.xml"><link rel="alternate" type="application/json" href="https://haorongx.github.io/feed.json"><meta property="og:title" content="Lexical Analysis: The Basics"><meta property="og:site_name" content="Haorong Xu"><meta property="og:description" content="The Role of Lexical Analyzer As I’ve mentioned in my previous post, the lexical analyzer is a component of a compiler that divides the source code into small pieces called lexemes and generates a token for each lexemes. The tokens generated will be fed to&hellip;"><meta property="og:url" content="https://haorongx.github.io/lexical-analysis-the-basics-2.html"><meta property="og:type" content="article"><link rel="stylesheet" href="https://haorongx.github.io/assets/css/style.css?v=6fbb1e8931a5afe843374fd67c192c86"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://haorongx.github.io/lexical-analysis-the-basics-2.html"},"headline":"Lexical Analysis: The Basics","datePublished":"2024-06-10T10:40","dateModified":"2024-06-10T10:41","description":"The Role of Lexical Analyzer As I’ve mentioned in my previous post, the lexical analyzer is a component of a compiler that divides the source code into small pieces called lexemes and generates a token for each lexemes. The tokens generated will be fed to&hellip;","author":{"@type":"Person","name":"Haorong Xu","url":"https://haorongx.github.io/authors/haorong-xu/"},"publisher":{"@type":"Organization","name":"Haorong Xu"}}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript></head><body><div class="site-container"><header class="top" id="js-header"><a class="logo" href="https://haorongx.github.io/">Haorong Xu</a></header><main><article class="post"><div class="hero"><header class="hero__content"><div class="wrapper"><div class="post__meta"><time datetime="2024-06-10T10:40">June 10, 2024</time></div><h1>Lexical Analysis: The Basics</h1><div class="post__meta post__meta--author"><a href="https://haorongx.github.io/authors/haorong-xu/" class="feed__author">Haorong Xu</a></div></div></header></div><div class="wrapper post__entry"><h2 id="the-role-of-lexical-analyzer">The Role of Lexical Analyzer</h2><p>As I’ve mentioned in my previous post, the lexical analyzer is a component of a compiler that divides the source code into small pieces called <em>lexemes</em> and generates a <em>token</em> for each lexemes. The tokens generated will be fed to the parser.</p><h3 id="lexemes-tokens-and-patterns">Lexemes, Tokens, and Patterns</h3><ul><li><strong>Lexemes</strong>: Lexemes are strings in the source code that cannot be further broken down, and a lexeme is the smallest lexical unit.</li><li><strong>Tokens</strong>: Tokens are abstract representations of certain kinds of lexemes(which means a lexeme is an instance of a certain token).</li></ul><p>Here is a table from <em>Compilers Principles, Techniques, and Tools</em>, it perfectly illustrates the differences between lexemes and tokens.</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/3/lexemes_and_tokens.png" alt="Lexemes &amp; Tokens" width="1229" height="397" sizes="100vw" srcset="https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-xs.png 300w, https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-sm.png 480w, https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-md.png 768w, https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-lg.png 1024w, https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-xl.png 1360w, https://haorongx.github.io/media/posts/3/responsive/lexemes_and_tokens-2xl.png 1600w"></figure><p></p><p>In conclusion, the advantages of having a lexical analyzer are as follows:</p><ul><li>Allowing us to detect format errors. e.g. Misspelled identifiers, unknown characters, etc.</li><li>Making parsing easier. By turning the entire source code into a sequence of tokens, the parser no longer needs to interact with original code which might includes comments, white spaces, and many other unnecessary stuff that make parsing difficult. As a consequence, the speed of parsing is increased.</li></ul><h2 id="implementation-of-a-basic-lexical-analyzer">Implementation of a Basic Lexical Analyzer</h2><p>Let’s now make a lexical analyzer that processes arithmetical formulas(e.g. 1+2*3). Before we start coding, we should define the set of tokens and lexemes first. In this case, all possible lexemes and their corresponding tokens are as follows:</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/3/token_set.png" alt="Tokens Set" width="858" height="337" sizes="100vw" srcset="https://haorongx.github.io/media/posts/3/responsive/token_set-xs.png 300w, https://haorongx.github.io/media/posts/3/responsive/token_set-sm.png 480w, https://haorongx.github.io/media/posts/3/responsive/token_set-md.png 768w, https://haorongx.github.io/media/posts/3/responsive/token_set-lg.png 1024w, https://haorongx.github.io/media/posts/3/responsive/token_set-xl.png 1360w, https://haorongx.github.io/media/posts/3/responsive/token_set-2xl.png 1600w"></figure><p></p><p>The main feature we want to implement here is a function called get_next_token. This function fetches the next valid token in the input stream while ignoring all white spaces and detecting unidentifiable lexemes. This function will be called by the parser.</p><p>So firstly we want to define the type of tokens. Without doubt, we can simply give each token a unique integer as its index, and we can pass tokens as they are integers. However, sometimes we want to add some additional information. For example, we want the the INTV token to contain both its index and the value of the integer it represents. So we’ll need a structure to store tokens:</p><pre><code class="language-c">typedef enum {PLUS, MINUS, MULT, DIV, LP, RP, INTV, EOI} lex_type;
+typedef struct
+{
+    lex_type token;
+    int val;
+} token;
+</code></pre><p>With <code>struct token</code> now we can implement get_next_token:</p><pre><code class="language-c">int get_next_token(token *t) // return 0 when read EOF or failed, otherwise return the length of lexeme
+{
+    char ch;
+    while((ch = getchar()) &amp;&amp; ch == &#39; &#39; &amp;&amp; ch == &#39;\t&#39; &amp;&amp; ch ==&#39;\n&#39;)
+        continue;
+
+    switch(ch) {
+        case &#39;+&#39;:   t-&gt;token = PLUS; return 1;
+        case &#39;-&#39;:   t-&gt;token = MINUS; return 1;
+        case &#39;*&#39;:   t-&gt;token = MULT; return 1;
+        case &#39;/&#39;:   t-&gt;token = DIV; return 1;
+        case &#39;(&#39;:   t-&gt;token = LP; return 1;
+        case &#39;)&#39;:   t-&gt;token = RP; return 1;
+        case EOF: case &#39;\n&#39;: case &#39; &#39;: case &#39;\t&#39;:   return 0;
+        default: // integers
+            if(!(&#39;0&#39; &lt;= ch &amp;&amp; ch &lt;= &#39;9&#39;)) { // not a number 
+                fprintf(stderr, &quot;Invalid lexeme %c!\n&quot;, ch);
+                return 0;
+            }
+            t-&gt;token = INTV;
+            int cnt = 1;
+            t-&gt;val = ch - &#39;0&#39;;
+            while((ch = getchar()) &amp;&amp; &#39;0&#39; &lt;= ch &amp;&amp; ch &lt;= &#39;9&#39;) {
+                t-&gt;val = t-&gt;val * 10 + ch - &#39;0&#39;;
+                ++ pos; ++ cnt;
+            }
+            ungetc(ch, stdin);
+            return cnt;
+    }
+}
+</code></pre><h3 id="buffering">Buffering</h3><p>The code above works just well. However, it’s not that efficient. As you probably know, I/O tasks are pretty expensive. While I/O devices are reading data(which is really slow), CPU can do no computational job but wait for them, so CPU is <em>blocked</em>. In the get_next_token function above, we read the input stream character by character, but if we read more characters in one go, then we don’t need to access I/O stream so frequently. Therefore, <strong>buffering</strong> the input saves a lot of time.</p><p>There are many ways to implement buffering, and a typical one is having one buffer array.</p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/3/buffering.png" alt="Buffering" width="561" height="129" sizes="100vw" srcset="https://haorongx.github.io/media/posts/3/responsive/buffering-xs.png 300w, https://haorongx.github.io/media/posts/3/responsive/buffering-sm.png 480w, https://haorongx.github.io/media/posts/3/responsive/buffering-md.png 768w, https://haorongx.github.io/media/posts/3/responsive/buffering-lg.png 1024w, https://haorongx.github.io/media/posts/3/responsive/buffering-xl.png 1360w, https://haorongx.github.io/media/posts/3/responsive/buffering-2xl.png 1600w"></figure><p>Whenever the pointer(pos) reaches the end of the buffer, we fill it with new input and then move pos to the first element. By using a buffer, we can stop using ungetc(), which only guarantees one pushback(so if another function uses ungetc then unknown errors will probably occur!).</p><p>But some lexical analyzer implement two buffers instead. Here is an example.</p><pre><code class="language-c">int get_next_token(FILE *restrict stream, token *t)
+{
+    t-&gt;token = EOI;
+    if(pos == NULL) { // Initialization
+        buf[0] = (char*) calloc(DISK_BLOCK_SIZE + 1, sizeof(char));
+        buf[1] = (char*) calloc(DISK_BLOCK_SIZE + 1, sizeof(char));
+        if(!fgets(buf[0], DISK_BLOCK_SIZE, stream)) return 0;
+        len = strlen(buf[0]); pos = buf[0];
+    }
+    while(skip_spaces()) {    
+        if(pos == &amp;buf[0][DISK_BLOCK_SIZE] || pos == &amp;buf[0][len]) { // Reached the end of buffer #1
+            if(!fgets(buf[1], DISK_BLOCK_SIZE, stream)) return 0;
+            len = strlen(buf[1]); pos = buf[1];
+        }
+        else if(pos == &amp;buf[1][DISK_BLOCK_SIZE] || pos == &amp;buf[1][len]) {
+            if(!fgets(buf[0], DISK_BLOCK_SIZE, stream)) return 0;
+            len = strlen(buf[0]); pos = buf[0];
+        }
+    }
+    int ret = 0;
+    switch(*pos) {
+        case &#39;+&#39;: t-&gt;token = PLUS; ret = 1; break;
+        case &#39;-&#39;: t-&gt;token = MINUS; ret = 1; break;
+        case &#39;*&#39;: t-&gt;token = MULT; ret = 1; break;
+        case &#39;/&#39;: t-&gt;token = DIV; ret = 1; break;
+        case &#39;(&#39;: t-&gt;token = LP; ret = 1; break;
+        case &#39;)&#39;: t-&gt;token = RP; ret = 1; break;
+        case EOF: ret = 0; break;
+        default:
+            if(!(&#39;0&#39; &lt;= *pos &amp;&amp; *pos &lt;= &#39;9&#39;)) {
+                fprintf(stderr, &quot;Invalid lexeme %c!\n&quot;, *pos);
+                return 0;
+            }
+            t-&gt;token = INTV; ret = read_int(&amp;t-&gt;val);
+            break;
+    }
+    ++ pos;
+    return ret;
+}
+</code></pre><p>The following algorithm is the core idea of having two buffer:</p><pre><code class="language-c">switch(ch) {
+    case EOF:
+        if(at the end of buf1) {
+            fgets(buf2, ...);
+            pos = buf2;
+        }
+        else if(at the end of buf2) {
+            fgets(buf2, ...);
+            pos = buf2;
+        }
+        else // an EOF found in the middle of a buffer
+            return EOF; // we reached the end of input stream
+}
+</code></pre><h2 id="lookahead">Lookahead</h2><p>Sometimes the parser has to read the next token in the input stream without actually taking it from input. We thus need to provide a function to implement such feature. It’s just like the ungetc function, the only difference is that we are pushing back a lexeme here, instead of just a character.</p><pre><code class="language-c">static token t = {-1, 0};
+bool match(const token *p) // return true when p is the same type of token as the next one
+{
+    if(t.token == -1)
+        get_next_token(stdin, &amp;t);
+    return t.token == p-&gt;token;
+}
+void advance() // move forward to next token
+{
+    get_next_token(stdin, &amp;t);
+}
+</code></pre></div><footer class="wrapper post__footer"><p class="post__last-updated">This article was updated on June 10, 2024</p><ul class="post__tag"><li><a href="https://haorongx.github.io/tags/compiler-design/">Compiler Design</a></li><li><a href="https://haorongx.github.io/tags/lexical-analysis/">Lexical Analysis</a></li></ul><div class="post__share"></div><div class="post__bio bio"><div><h3 class="bio__name"><a href="https://haorongx.github.io/authors/haorong-xu/" rel="author">Haorong Xu</a></h3></div></div></footer></article><nav class="post__nav"><div class="post__nav-inner"><div class="post__nav-prev"><svg width="1.041em" height="0.416em" aria-hidden="true"><use xlink:href="https://haorongx.github.io/assets/svg/svg-map.svg#arrow-prev"/></svg> <a href="https://haorongx.github.io/kmp-algorithm.html" class="post__nav-link" rel="prev"><span>Previous</span> KMP Algorithm</a></div><div class="post__nav-next"><a href="https://haorongx.github.io/introduction-to-compiler-design.html" class="post__nav-link" rel="next"><span>Next</span> Introduction to Compiler Design </a><svg width="1.041em" height="0.416em" aria-hidden="true"><use xlink:href="https://haorongx.github.io/assets/svg/svg-map.svg#arrow-next"/></svg></div></div></nav></main><footer class="footer"><div class="footer__copyright"><p>Powered by Publii</p></div><button onclick="backToTopFunction()" id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg><use xlink:href="https://haorongx.github.io/assets/svg/svg-map.svg#toparrow"/></svg></button></footer></div><script defer="defer" src="https://haorongx.github.io/assets/js/scripts.min.js?v=f47c11534595205f20935f0db2a62a85"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script></body></html>
