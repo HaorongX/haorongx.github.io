@@ -10,6 +10,20 @@
     },
     "items": [
         {
+            "id": "https://haorongx.github.io/some-tips-for-postgresql-beginners.html",
+            "url": "https://haorongx.github.io/some-tips-for-postgresql-beginners.html",
+            "title": "Some Tips for PostgreSQL Beginners",
+            "summary": "Lately I’ve been doing research on PostgreSQL for a while. As a beginner, it’s really hard to decide what to focus on since PostgreSQL is such a complex system. Nevertheless, there are bunches of stuff we have to keep in mind during our learning process.",
+            "content_html": "<p>Lately I’ve been doing research on PostgreSQL for a while. As a beginner, it’s really hard to decide what to focus on since PostgreSQL is such a complex system. Nevertheless, there are bunches of stuff we have to keep in mind during our learning process. Here are some tips that might help you.</p><ol>\n<li>Participate in the community\nPostgreSQL <a href=\"https://www.postgresql.org/community/\">Community</a> is mainly made up by several mailing lists. You can find those lists at their website. Whenever you encounter a problem while using or learning Postgres, you can send a e-mail to one of these lists. But there are some thing to keep in mind before starting writing e-mails.</li>\n</ol>\n<p>The very first point is to choose the right list. If you just have some general problems while using PostgreSQL you’d better to ask in pg-general first. This list is for general user support. But if your question is related to the internals or seem to be complicated, then post it in pg-hackers, where most developers are. It’s also important to be aware when writing e-mails. For example, you need to be polite and respectful, and don’t forget to cc your e-mails to the mailing list.</p><p>By the way, although you can subscribe to any mailing lists, I don’t recommand you to do so unless you actually want to read every single email in the mailing lists. As there are tons of emails on their mailing list, probably there will be hundreds of emails pop up to your mail box every day, which ruins everything. Moreover, you can still use mailing list and view others’ mails without subscribing.</p><ol start=\"2\">\n<li>Remember to execute git clean if you are installing from source code\nYesterday I encountered a embarrassing situation which I found that I cannot execute initdb normally after running git pull and make make install. Therefore I wrote some e-mails to the community to seek for help. The problem didn’t solved until Tom Lane told me that:</li>\n</ol>\n<pre><code>… Also, before you spend a lot of time chasing this, make sure it’s not a mirage. Reset your source tree fully with “git clean -dfxq” then configure, make, make install; then see if problem still exists.\n</code></pre>\n<ol start=\"3\">\n<li>Using tools like commitfest &amp; build farm wisely</li>\n</ol>\n<ul>\n<li><strong>Commitfest</strong> is a online tool where all patches get reviewed, you can review or submit new patches here.</li>\n<li><strong>Buildfarm</strong> is a tool that shows the build status of PostgreSQL.</li>\n<li><strong>GDB</strong> can be used for tracing stacks and memory.</li>\n</ul>\n<ol start=\"4\">\n<li>Provide enough context when ask for help\nWhen you really need help and you want to write an e-mail to the community, try to provide as much details as you can, which typically includes:</li>\n</ol>\n<ul>\n<li>What platform is this on?  Is the system software\nup-to-date?</li>\n<li>What C compiler are you using, and what version exactly?</li>\n<li>What configure options did you use?</li>\n</ul>\n",
+            "author": {
+                "name": "Haorong Xu"
+            },
+            "tags": [
+            ],
+            "date_published": "2024-06-25T13:27:07+08:00",
+            "date_modified": "2024-06-25T14:59:34+08:00"
+        },
+        {
             "id": "https://haorongx.github.io/introduction-to-compiler-design.html",
             "url": "https://haorongx.github.io/introduction-to-compiler-design.html",
             "title": "Introduction to Compiler Design",
