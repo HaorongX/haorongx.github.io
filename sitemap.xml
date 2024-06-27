@@ -46,6 +46,14 @@
 </url>
 <url>
 <loc>https://haorongx.github.io/some-tips-for-postgresql-beginners.html</loc>
-<lastmod>2024-06-25T14:59:34+08:00</lastmod>
+<lastmod>2024-06-25T15:24:39+08:00</lastmod>
+</url>
+<url>
+<loc>https://haorongx.github.io/the-physical-storage-of-postgresql-page-layout.html</loc>
+<lastmod>2024-06-27T23:02:35+08:00</lastmod>
+<image:image>
+<image:loc>https://haorongx.github.io/media/posts/6/pagelayout.svg</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
 </url>
 </urlset>

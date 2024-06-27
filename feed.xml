@@ -3,12 +3,108 @@
     <title>Haorong Xu</title>
     <link href="https://haorongx.github.io/feed.xml" rel="self" />
     <link href="https://haorongx.github.io" />
-    <updated>2024-06-25T14:59:34+08:00</updated>
+    <updated>2024-06-27T23:02:35+08:00</updated>
     <author>
         <name>Haorong Xu</name>
     </author>
     <id>https://haorongx.github.io</id>
 
+    <entry>
+        <title>The Physical Storage of PostgreSQL - Page Layout</title>
+        <author>
+            <name>Haorong Xu</name>
+        </author>
+        <link href="https://haorongx.github.io/the-physical-storage-of-postgresql-page-layout.html"/>
+        <id>https://haorongx.github.io/the-physical-storage-of-postgresql-page-layout.html</id>
+            <category term="Storage"/>
+            <category term="PostgreSQL"/>
+
+        <updated>2024-06-27T23:02:35+08:00</updated>
+            <summary>
+                <![CDATA[
+                    Database Cluster A database cluster is a collection of databases that is managed by a single instance of a running database server. In file system terms, a database cluster is a single directory under which all data will be stored. ^[1] Generally, after you excute&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2 id="database-cluster">Database Cluster</h2>
+<p>A database cluster is a collection of databases that is managed by a single instance of a running database server. In file system terms, a database cluster is a single directory under which all data will be stored. ^[1]</p><p>Generally, after you excute <code>initdb</code>, the database cluster directory is created, typically it would be <code>/usr/local/pgsql/data</code>. This directory contains several subdirectories, you can find a full list <a href="https://www.postgresql.org/docs/current/storage-file-layout.html">here</a>. Now we shall just focus on the <code>base</code> folder, which contains per-database subdirectories.</p><h2 id="heap-table">Heap Table</h2>
+<p>(<a href="https://www.postgresql.org/docs/current/storage-page-layout.html">Here</a> is the official documentation that describes the layout of a database page)</p><p>In PostgreSQL, each table is stored in one or several files that are called <strong>HEAP TABLE FILE</strong>.</p><p>Now let’s look into what is inside this file. Basically, a heap table file contains of five seperate areas, which are:</p><ul>
+<li>Header data: Consists of some meta data and three pointers, which are <code>pd_lower</code>, <code>pd_upper</code>, and <code>pd_special</code>. They point to the </li>
+<li>Item Ids: Each Item Id is a pointer to a tuple(A tuple is a row in the table)</li>
+<li>Unallocated space</li>
+<li>Tuples(Items)</li>
+<li>Special space</li>
+</ul>
+<p>Whenever a new tuple is added, Postgres allocates a new ItemID at the <strong>beginning of the free space</strong>, and then stores the tuple at the <strong>end of the free space</strong>, as shown in the following figure:</p><p><figure class="post__image"><img loading="lazy" src="https://haorongx.github.io/media/posts/6/pagelayout.svg" alt="" width="610" height="210" ></figure> ^[2]</p><p>The core components of a page are ItemIDs and header data, and they are internally represented as a <code>PageHeaderData</code> structure, which is defined below:</p><pre><code class="language-c">typedef struct PageHeaderData
+{
+    /* XXX LSN is member of *any* block, not only page-organized ones */
+    PageXLogRecPtr pd_lsn;		/* LSN: next byte after last byte of xlog
+                                 * record for last change to this page */
+    uint16		pd_checksum;	/* checksum */
+    uint16		pd_flags;		/* flag bits, see below */
+    LocationIndex pd_lower;		/* offset to start of free space */
+    LocationIndex pd_upper;		/* offset to end of free space */
+    LocationIndex pd_special;	/* offset to start of special space */
+    uint16		pd_pagesize_version;
+    TransactionId pd_prune_xid; /* oldest prunable XID, or zero if none */
+    ItemIdData	pd_linp[FLEXIBLE_ARRAY_MEMBER]; /* line pointer array */
+} PageHeaderData;
+</code></pre>
+<p>While we can simply ingnore most variables since they are irrelevent to what we are studying now, we really need to focus on <code>pd_lower</code>, <code>pd_upper</code>, <code>pd_special</code>, and <code>pd_linp</code>. We can get started by examining the initialization process.</p><pre><code class="language-c">void
+PageInit(Page page, Size pageSize, Size specialSize)
+{
+    PageHeader	p = (PageHeader) page;
+
+    specialSize = MAXALIGN(specialSize);
+
+    Assert(pageSize == BLCKSZ);
+    Assert(pageSize &gt; specialSize + SizeOfPageHeaderData);
+
+    /* Make sure all fields of page are zero, as well as unused space */
+    MemSet(p, 0, pageSize);
+
+    p-&gt;pd_flags = 0;
+    p-&gt;pd_lower = SizeOfPageHeaderData;
+    p-&gt;pd_upper = pageSize - specialSize;
+    p-&gt;pd_special = pageSize - specialSize;
+    PageSetPageSizeAndVersion(page, pageSize, PG_PAGE_LAYOUT_VERSION);
+    /* p-&gt;pd_prune_xid = InvalidTransactionId;		done by above MemSet */
+}
+</code></pre>
+<p>As you can see, <code>pd_lower</code> is set to the end of header data, which is exactly where the free space begins. Meanwhile, <code>pd_upper</code> is set to the beginning of special space, which is the next byte of the terminal of free space, while <code>pd_special</code> is set to the same location. As for pd_linp, they are actually the line pointers, or <code>Item IDs</code> we mentioned above. They are a (offset,length) pair, which is defined below:</p><pre><code class="language-c">typedef struct ItemIdData
+{
+    unsigned    lp_off:15,      /* offset to tuple (from start of page) */
+                lp_flags:2,     /* state of line pointer, see below */
+                lp_len:15;      /* byte length of tuple */
+} ItemIdData;
+
+/*
+* lp_flags has these possible states.  An UNUSED line pointer is available
+* for immediate re-use, the other states are not.
+*/
+#define LP_UNUSED       0       /* unused (should always have lp_len=0) */
+#define LP_NORMAL       1       /* used (should always have lp_len&gt;0) */
+#define LP_REDIRECT     2       /* HOT redirect (should have lp_len=0) */
+#define LP_DEAD         3       /* dead, may or may not have storage */
+</code></pre>
+<p>By specifying offest and length, we can find a tuple easily. A tuple begins at <code>page + lp_off</code> and ends at <code>page + lp_off + lp_len - 1</code>.</p><h2 id="insert-tuples">Insert Tuples</h2>
+<p>Inserting tuples is implemented with function <code>PageAddItemExtended</code> in <code>bufpage.c</code>. I briefly summarized the entire process, which is</p><ol>
+<li>If a offsetNumber is specified(which means we want to insert the tuple at a specific location), check the validity of given location</li>
+<li>Check weather the given page has sufficient space or not</li>
+<li>If the inserting position is in the middle of ItemIDs array, then shuffle them to make room for new tuple</li>
+<li>Copy the new tuple to the page</li>
+<li>Update pointers(<code>pd_lower</code> &amp; <code>pd_upper</code>)</li>
+</ol>
+<h2 id="references">References</h2>
+<ul>
+<li>[1]: PostgreSQL Documentation, <a href="https://www.postgresql.org/docs/current/creating-cluster.html">https://www.postgresql.org/docs/current/creating-cluster.html</a></li>
+<li>[2]: This figure is from PostgreSQL documentation, <a href="https://www.postgresql.org/docs/current/storage-page-layout.html">https://www.postgresql.org/docs/current/storage-page-layout.html</a></li>
+</ul>
+
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Some Tips for PostgreSQL Beginners</title>
         <author>
@@ -16,6 +112,7 @@
         </author>
         <link href="https://haorongx.github.io/some-tips-for-postgresql-beginners.html"/>
         <id>https://haorongx.github.io/some-tips-for-postgresql-beginners.html</id>
+            <category term="PostgreSQL"/>
 
         <updated>2024-06-25T13:27:07+08:00</updated>
             <summary>
