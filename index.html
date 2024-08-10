@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"haorongx.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Haorong&#39;s Blog">
+<meta property="og:url" content="https://haorongx.github.io/index.html">
+<meta property="og:site_name" content="Haorong&#39;s Blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Haorong Xu">
+<meta property="article:tag" content="Computer Science, Database, DBMS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://haorongx.github.io/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Haorong's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Haorong's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">To remove all barrieres in the way of computer science.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Haorong Xu"
+      src="https://avatars.githubusercontent.com/u/103825064?v=4">
+  <p class="site-author-name" itemprop="name">Haorong Xu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:db_haorong@outlook.com" title="E-Mail → mailto:db_haorong@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/08/10/Column-stores-vs-row-stores-how-different-are-they-really-A-Brief-Summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/10/Column-stores-vs-row-stores-how-different-are-they-really-A-Brief-Summary/" class="post-title-link" itemprop="url">Column-stores vs. row-stores: how different are they really? : A Brief Summary</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-08-10 18:53:28 / Modified: 19:01:07" itemprop="dateCreated datePublished" datetime="2024-08-10T18:53:28+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DBMS/" itemprop="url" rel="index"><span itemprop="name">DBMS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="background-introduction">Background &amp; Introduction</h2>
+<p>Column-oriented database systems (column-store or c-store) have been
+widely applied in data warehousing and business intelligence
+application. Briefly, a column-store database stores data in the same
+column contigously and compressed.<span
+class="math inline">\(^{[2]}\)</span> Unlike traditional row-store
+database systems, which store data belonging to the same record
+together. Column-store database is able to execute faster in certain
+situations because it avoids fetch unneccessary data (i.e. attributs not
+required).</p>
+<h2 id="row-store-simulating-column-store">Row-store simulating
+column-store</h2>
+<p>Although the storage layer and query executor of c-store have
+competely different archeitecture, it was thought to be possible to
+simulate columnar storage in traditional row-store DBMS without changing
+its kernel. There are mainly three ways to achieve this:</p>
+<ul>
+<li>Vertically partitioning</li>
+<li>All - Index plan</li>
+<li>Materialized views</li>
+</ul>
+<p>Now we explore these three techniques and thier disadvantages.</p>
+<h3 id="vertically-partitioning">Vertically Partitioning</h3>
+<p>Vertically partitioning a table creates a seperate table for each
+attribute, which contains a (position key, attribute value) pair. By
+doing so database can fetch one attribute every time, thus reduces I/O
+redundent. Take an <code>employee</code> table for example.</p>
+<p><img src="/images/cstore_verticalpartitioning.png" /></p>
+<p>This optimization, however, does not work very effective. The main
+problem is that the DBMS needs to join each sub-table upon querying,
+which leads to significant decrease in performance. The position keys
+stored in every column also wastes disk bandwidth.</p>
+<h3 id="all---index">All - Index</h3>
+<p>This plan adds a B <span class="math inline">\(^{+}\)</span> -Tree
+index on every column of the table. Upon querying, a list of (record-id,
+value) pairs generated for each column, which contains records that
+satisfy predicates(i.e. WHERE clause) on this column(If no predicate is
+given, then it will generates a list of all tuples). Then the DBMS joins
+these lists of tuples.</p>
+<p>The obvious drawbacks is that the hash join(which is used in this
+case) is quite slow. The author claims that theortically the performance
+of all-index plan should be close to the virtically partioning plan, but
+they cannot set their DBMS properly so it performs way worse than
+VP.</p>
+<h3 id="materialized-view">Materialized View</h3>
+<p>Materialized views are a kind of views which precompute the result of
+a given query. Unlike most common views which only store a virtual
+table, materialized views allows precomputed data to be stored
+physically. Hence, row-store can avoid reading unneccessary attributes
+by including only required columns in materialized views. However, using
+materialized view requires to know all quries in advance, and
+materialized views must be properly maintained when new data is inserted
+/ modified.</p>
+<h3 id="performances">Performances</h3>
+<p>This image from <span class="math inline">\([1]\)</span> illustrates
+the performance of basic c-store and r-store. (MV stands for
+materialized views enabled)</p>
+<p><img src="/images/cstore_performance1.png" /></p>
+<p>This image shows the performance differences between all varients of
+r-store. ((a) Performance numbers for different variants of the
+row-store by query flight. Here, T is traditional, T(B) is traditional
+(bitmap), MV is materialized views, VP is vertical partitioning, and AI
+is all indexes. (b) Average performance across all queries.)</p>
+<p><img src="/images/cstore_performance2.png" /></p>
+<p>Clearly, none of the optimizations above can make the performance of
+r-store competitive to c-store. Hence, the author concludes that:</p>
+<blockquote>
+<p>Rather, it is that this simulation performs poorly on today’s
+row-store systems (our experiments were performed on a very recent
+product release of System X). A successful column-oriented simulation
+will require some important system improvements, such as virtual
+record-ids, reduced tuple overhead, fast merge joins of sorted data,
+run-length encoding across multiple tuples, and some column-oriented
+query execution techniques... <span
+class="math inline">\(^{[1]}\)</span></p>
+</blockquote>
+<h2 id="c-store-optimizations">C-store Optimizations</h2>
+<p>This article explores several practical ways to improve the
+performance of c-store, which include:</p>
+<ul>
+<li>Compression</li>
+<li>Late Materialization</li>
+<li>Block Iteration</li>
+<li>Invisible Join</li>
+</ul>
+<h3 id="compression">Compression</h3>
+<p>Compression not only saves storage space but also reduces I/O
+redundent, thus speeds up query processing. The author argues that
+compression is especially effective in c-store because data of the same
+type(which is stored in the same column) has lower <em>information
+entropy</em><span class="math inline">\(^{[3]}\)</span>. It's also
+suggested that compression algorithms which can directly operate on
+compressed data is even more effective because decompression can be
+avoided.</p>
+<h3 id="late-materialization">Late Materialization</h3>
+<p>Materialization refers to the process which tuples on the disks are
+fetched into RAM, and <strong>late materialization</strong> means to
+perform materialization as late as possible. Without late
+materialization(i.e. using early materialization strategy instead), a
+c-store DBMS fetches columns from the disks and reconstructs tuples(i.e.
+combine columns into rows) at early stage in query processing. Late
+materialization defers to reconstruct tuples early, instead, it first
+applies all predicates and generates a list of positions to represent
+required tuples.</p>
+<p>Late materialization avoids to fetch unneccessary tuples(since
+predicates are applied early). It also ensures that compressed data will
+not be decompressed when there's no need to (but if we reconstruct
+tuples, then data must be decompressed to combine with data from other
+columns).</p>
+<h3 id="block-iteration">Block Iteration</h3>
+<p>C-store allows all data from a column to be processed together, and
+fixed-length tuples allows DBMS to treat data as an array, thus exploits
+potention for parallelism on CPU. Futhermore, no data extraction is
+required in this case, unlike in r-store which attributes must be
+extracted from tuples.</p>
+<h3 id="invisible-join">Invisible Join</h3>
+<p>In this article, the author proposed a new join technique called
+<strong>invisible join</strong>. The process of invisible join is as
+follow. (Before we get started, let's now define what <strong>fact
+table</strong>, and <strong>dimension table</strong>. Fact tables
+contain numerical data, while dimension tables provide context and
+background information <span class="math inline">\(^{[4]}\)</span>)</p>
+<p>Invisible join first extracts a list of dimension table keys which
+satisfy the predicate, and uses these keys to create a hash table to
+filter out keys in the fact table.(the following image from the article
+illustrates this process)</p>
+<p><img src="/images/cstore_invisiblejoin1.png" /></p>
+<p>Then, keys in the fact table are fed to the hash table. A list of
+positions of accepted tuples is created for each column of the fact
+table. Then all the position lists are joined(which only requires a bit
+AND).</p>
+<p><img src="/images/cstore_invisiblejoin2.png" /></p>
+<p>Finally, required data is extracted from fact table and dimension
+tables.</p>
+<p><img src="/images/cstore_invisiblejoin3.png" /></p>
+<h3 id="performances-1">Performances</h3>
+<p><img src="/images/cstore_performance3.png" /></p>
+<p>((a) Performance numbers for C-Store by query flight with various
+optimizations removed. The four letter code indicates the C-Store
+configuration: T=tuple-at-a-time processing, t=block processing;
+I=invisible join enabled, i=disabled; C=compression enabled, c=disabled;
+L=late materialization enabled, l=disabled. (b) Average performance
+numbers for C-Store across all queries.)</p>
+<p>The image above illustrates the performances of different
+optimizations techniques for c-store. Obviously the most siginificant
+optimizations are compression and late materialization.</p>
+<p>The author also explores the performance of c-store on
+prejoined(a.k.a. denormalized) tables(in this case, the fact table is
+prejoined with dimension tables). The intention of this experiment was
+to explore the cost of predicates application(since the author noticed
+that "performance is dominated in the lower parts of the query plan
+(predicate application) and that the invisible join technique made join
+performance relatively cheap."<span
+class="math inline">\(^{[1]}\)</span>) It was assumed that the
+performance would be improved since the join process can be avoided.
+However, the experiment shows that the assumption is wrong.</p>
+<p><img src="/images/cstore_performance4.png" /></p>
+<p>Surprisingly, the performance wasn't improved at all (PJ, No C), but
+declined significantly. The reason is that invisible join converts
+predicates on dimension tables to predicates on fact table foreign keys,
+but with prejoined table, predicates are applied directly on strings,
+which takes more time to process than integers. Therefore, after strings
+are mapped to integers (PJ, Int C), the performance improved
+significantly.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Finally, the author concludes that:</p>
+<blockquote>
+<p>We showed that attempts to emulate the physical layout of a
+column-store in a row-store via techniques like vertical partitioning
+and index-only plans do not yield good performance. We attribute this
+slowness to high tuple reconstruction costs, as well as the high
+per-tuple overheads in narrow, vertically partitioned tables. ... The
+conclusion of this work is not that simulating a columnstore in a
+row-store is impossible. Rather, it is that this simulation performs
+poorly on today’s row-store systems (our experiments were performed on a
+very recent product release of System X). A successful column-oriented
+simulation will require some important system improvements, such as
+virtual record-ids, reduced tuple overhead, fast merge joins of sorted
+data, run-length encoding across multiple tuples, and some
+column-oriented query execution techniques like operating directly on
+compressed data, block processing, invisible joins, and late
+materialization.</p>
+</blockquote>
+<h2 id="references">References</h2>
+<ul>
+<li><p><strong>[1]</strong> Abadi, D.J., Madden, S.R., Hachem, N., 2008.
+Column-stores vs. row-stores: how different are they really?, in:
+Proceedings of the 2008 ACM SIGMOD International Conference on
+Management of Data. Presented at the SIGMOD/PODS ’08: SIGMOD/PODS ’08 -
+International Conference on Management of Data, ACM, Vancouver Canada,
+pp. 967–980. <a target="_blank" rel="noopener" href="https://doi.org/10/bbx62s"
+class="uri">https://doi.org/10/bbx62s</a></p></li>
+<li><p><strong>[2]</strong> Abadi, D.J., Boncz, P.A., Harizopoulos, S.,
+2009. Column-oriented database systems. Proc. VLDB Endow. 2, 1664–1665.
+<a target="_blank" rel="noopener" href="https://doi.org/10/ggmz6g"
+class="uri">https://doi.org/10/ggmz6g</a></p></li>
+<li><p><strong>[3]</strong> Abadi, D., Madden, S., Ferreira, M., 2006.
+Integrating compression and execution in column-oriented database
+systems. Proceedings of the 2006 ACM SIGMOD international conference on
+Management of data 671–682. <a target="_blank" rel="noopener" href="https://doi.org/10/b3q7nx"
+class="uri">https://doi.org/10/b3q7nx</a></p></li>
+<li><p><strong>[4]</strong> Simplilearn, 2024. Fact Table vs. Dimension
+Table - Differences Between The Two. Simplilearn. <a
+target="_blank" rel="noopener" href="https://www.simplilearn.com/fact-table-vs-dimension-table-article"
+class="uri">https://www.simplilearn.com/fact-table-vs-dimension-table-article</a></p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/" class="post-title-link" itemprop="url">The Physical Storage of PostgreSQL - Page Layout</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-08-10 18:47:28 / Modified: 19:44:49" itemprop="dateCreated datePublished" datetime="2024-08-10T18:47:28+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DBMS/" itemprop="url" rel="index"><span itemprop="name">DBMS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DBMS/PostgreSQL/" itemprop="url" rel="index"><span itemprop="name">PostgreSQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="database-cluster">Database Cluster</h2>
+<p>A database cluster is a collection of databases that is managed by a
+single instance of a running database server. In file system terms, a
+database cluster is a single directory under which all data will be
+stored.<span class="math inline">\(^{[1]}\)</span></p>
+<p>Generally, after you excute <code>initdb</code>, the database cluster
+directory is created, typically it would be
+<code>/usr/local/pgsql/data</code>. This directory contains several
+subdirectories, you can find a full list <a
+target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/storage-file-layout.html">here</a>.
+Now we shall just focus on the <code>base</code> folder, which contains
+per-database subdirectories.</p>
+<h2 id="heap-table">Heap Table</h2>
+<p>(<a
+target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/storage-page-layout.html">Here</a>
+is the official documentation that describes the layout of a database
+page)</p>
+<p>In PostgreSQL, each table is stored in one or several files that are
+called <strong>HEAP TABLE FILE</strong>.</p>
+<p>Now let’s look into what is inside this file. Basically, a heap table
+file contains of five seperate areas, which are:</p>
+<ul>
+<li>Header data: Consists of some meta data and three pointers, which
+are <code>pd_lower</code>, <code>pd_upper</code>, and
+<code>pd_special</code>. They point to the</li>
+<li>Item Ids: Each Item Id is a pointer to a tuple(A tuple is a row in
+the table)</li>
+<li>Unallocated space</li>
+<li>Tuples(Items)</li>
+<li>Special space</li>
+</ul>
+<p>Whenever a new tuple is added, Postgres allocates a new ItemID at the
+beginning of the free space, and then stores the tuple at the end of the
+free space, as shown in the following figure:</p>
+<p><img src="/images/pagelayout1.svg" /> <span
+class="math inline">\(^{[2]}\)</span></p>
+<p>The core components of a page are ItemIDs and header data, and they
+are internally represented as a PageHeaderData structure, which is
+defined below:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">PageHeaderData</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">/* XXX LSN is member of *any* block, not only page-organized ones */</span></span><br><span class="line">    PageXLogRecPtr pd_lsn;		<span class="comment">/* LSN: next byte after last byte of xlog</span></span><br><span class="line"><span class="comment">                                 * record for last change to this page */</span></span><br><span class="line">    uint16		pd_checksum;	<span class="comment">/* checksum */</span></span><br><span class="line">    uint16		pd_flags;		<span class="comment">/* flag bits, see below */</span></span><br><span class="line">    LocationIndex pd_lower;		<span class="comment">/* offset to start of free space */</span></span><br><span class="line">    LocationIndex pd_upper;		<span class="comment">/* offset to end of free space */</span></span><br><span class="line">    LocationIndex pd_special;	<span class="comment">/* offset to start of special space */</span></span><br><span class="line">    uint16		pd_pagesize_version;</span><br><span class="line">    TransactionId pd_prune_xid; <span class="comment">/* oldest prunable XID, or zero if none */</span></span><br><span class="line">    ItemIdData	pd_linp[FLEXIBLE_ARRAY_MEMBER]; <span class="comment">/* line pointer array */</span></span><br><span class="line">&#125; PageHeaderData;</span><br></pre></td></tr></table></figure>
+<p>While we can simply ingnore most variables since they are irrelevent
+to what we are studying now, we really need to focus on
+<code>pd_lower</code>, <code>pd_upper</code>, <code>pd_special</code>,
+and <code>pd_linp</code>. We can get started by examining the
+initialization process.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span></span><br><span class="line"><span class="title function_">PageInit</span><span class="params">(Page page, Size pageSize, Size specialSize)</span></span><br><span class="line">&#123;</span><br><span class="line">    PageHeader	p = (PageHeader) page;</span><br><span class="line"></span><br><span class="line">    specialSize = MAXALIGN(specialSize);</span><br><span class="line"></span><br><span class="line">    Assert(pageSize == BLCKSZ);</span><br><span class="line">    Assert(pageSize &gt; specialSize + SizeOfPageHeaderData);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Make sure all fields of page are zero, as well as unused space */</span></span><br><span class="line">    MemSet(p, <span class="number">0</span>, pageSize);</span><br><span class="line"></span><br><span class="line">    p-&gt;pd_flags = <span class="number">0</span>;</span><br><span class="line">    p-&gt;pd_lower = SizeOfPageHeaderData;</span><br><span class="line">    p-&gt;pd_upper = pageSize - specialSize;</span><br><span class="line">    p-&gt;pd_special = pageSize - specialSize;</span><br><span class="line">    PageSetPageSizeAndVersion(page, pageSize, PG_PAGE_LAYOUT_VERSION);</span><br><span class="line">    <span class="comment">/* p-&gt;pd_prune_xid = InvalidTransactionId;		done by above MemSet */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>As you can see, <code>pd_lower</code> is set to the end of header
+data, which is exactly where the free space begins. Meanwhile,
+<code>pd_upper</code> is set to the beginning of special space, which is
+the next byte of the terminal of free space, while
+<code>pd_special</code> is set to the same location. As for
+<code>pd_linp</code>, they are actually the line pointers, or Item IDs
+we mentioned above. They are a (offset,length) pair, which is defined
+below:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ItemIdData</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">unsigned</span>    lp_off:<span class="number">15</span>,      <span class="comment">/* offset to tuple (from start of page) */</span></span><br><span class="line">                lp_flags:<span class="number">2</span>,     <span class="comment">/* state of line pointer, see below */</span></span><br><span class="line">                lp_len:<span class="number">15</span>;      <span class="comment">/* byte length of tuple */</span></span><br><span class="line">&#125; ItemIdData;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* lp_flags has these possible states.  An UNUSED line pointer is available</span></span><br><span class="line"><span class="comment">* for immediate re-use, the other states are not.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_UNUSED       0       <span class="comment">/* unused (should always have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_NORMAL       1       <span class="comment">/* used (should always have lp_len&gt;0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_REDIRECT     2       <span class="comment">/* HOT redirect (should have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_DEAD         3       <span class="comment">/* dead, may or may not have storage */</span></span></span><br></pre></td></tr></table></figure>
+<p>By specifying offest and length, we can find a tuple easily. A tuple
+begins at <code>page + lp_off</code> and ends at
+<code>page + lp_off + lp_len - 1</code>. Insert Tuples</p>
+<p>Inserting tuples is implemented with function PageAddItemExtended in
+bufpage.c. I briefly summarized the entire process, which is</p>
+<ol type="1">
+<li>If a offsetNumber is specified(which means we want to insert the
+tuple at a specific location), check the validity of given location</li>
+<li>Check weather the given page has sufficient space or not</li>
+<li>If the inserting position is in the middle of ItemIDs array, then
+shuffle them to make room for new tuple</li>
+<li>Copy the new tuple to the page</li>
+<li>Update pointers(pd_lower &amp; pd_upper)</li>
+</ol>
+<p>References</p>
+<ul>
+<li>[1]: PostgreSQL Documentation, <a
+target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/creating-cluster.html"
+class="uri">https://www.postgresql.org/docs/current/creating-cluster.html</a></li>
+<li>[2]: This figure is from PostgreSQL documentation, <a
+target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/storage-page-layout.html"
+class="uri">https://www.postgresql.org/docs/current/storage-page-layout.html</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/06/25/Some-Tips-for-PostgreSQL-Beginners/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/25/Some-Tips-for-PostgreSQL-Beginners/" class="post-title-link" itemprop="url">Some Tips for PostgreSQL Beginners</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-25 18:44:50" itemprop="dateCreated datePublished" datetime="2024-06-25T18:44:50+08:00">2024-06-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-10 18:47:11" itemprop="dateModified" datetime="2024-08-10T18:47:11+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DBMS/" itemprop="url" rel="index"><span itemprop="name">DBMS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DBMS/PostgreSQL/" itemprop="url" rel="index"><span itemprop="name">PostgreSQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Lately I’ve been doing research on PostgreSQL for a while. As a
+beginner, it’s really hard to decide what to focus on since PostgreSQL
+is such a complex system. Nevertheless, there are bunches of stuff we
+have to keep in mind during our learning process. Here are some tips
+that might help you.</p>
+<ol type="1">
+<li>Participate in the community. <a
+target="_blank" rel="noopener" href="https://www.postgresql.org/community/">PostgreSQL Community</a> is
+mainly made up by several mailing lists. You can find those lists at
+their website. Whenever you encounter a problem while using or learning
+Postgres, you can send a e-mail to one of these lists. But there are
+some thing to keep in mind before starting writing e-mails.</li>
+</ol>
+<p>The very first point is to choose the right list. If you just have
+some general problems while using PostgreSQL you’d better to ask in
+pg-general first. This list is for general user support. But if your
+question is related to the internals or seem to be complicated, then
+post it in pg-hackers, where most developers are. It’s also important to
+be aware when writing e-mails. For example, you need to be polite and
+respectful, and don’t forget to cc your e-mails to the mailing list.</p>
+<p>By the way, although you can subscribe to any mailing lists, I don’t
+recommand you to do so unless you actually want to read every single
+email in the mailing lists. As there are tons of emails on their mailing
+list, probably there will be hundreds of emails pop up to your mail box
+every day, which ruins everything. Moreover, you can still use mailing
+list and view others’ mails without subscribing.</p>
+<ol start="2" type="1">
+<li>Remember to execute git clean if you are installing from source code
+Yesterday I encountered a embarrassing situation which I found that I
+cannot execute initdb normally after running git pull and make make
+install. Therefore I wrote some e-mails to the community to seek for
+help. The problem didn’t solved until Tom Lane told me that:</li>
+</ol>
+<blockquote>
+<p>… Also, before you spend a lot of time chasing this, make sure it’s
+not a mirage. Reset your source tree fully with “git clean -dfxq” then
+configure, make, make install; then see if problem still exists.</p>
+</blockquote>
+<ol start="3" type="1">
+<li>Using tools like commitfest &amp; build farm wisely</li>
+</ol>
+<ul>
+<li>Commitfest is a online tool where all patches get reviewed, you can
+review or submit new patches here.</li>
+<li>Buildfarm is a tool that shows the build status of PostgreSQL.</li>
+<li>GDB can be used for tracing stacks and memory.</li>
+</ul>
+<ol start="4" type="1">
+<li>Provide enough context when ask for help When you really need help
+and you want to write an e-mail to the community, try to provide as much
+details as you can, which typically includes:</li>
+</ol>
+<ul>
+<li>What platform is this on? Is the system software up-to-date?</li>
+<li>What C compiler are you using, and what version exactly?</li>
+<li>What configure options did you use?</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/06/10/Introduction-to-Compiler-Design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/10/Introduction-to-Compiler-Design/" class="post-title-link" itemprop="url">Introduction to Compiler Design</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-10 18:41:27" itemprop="dateCreated datePublished" datetime="2024-06-10T18:41:27+08:00">2024-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-10 19:02:21" itemprop="dateModified" datetime="2024-08-10T19:02:21+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Compiler-Design/" itemprop="url" rel="index"><span itemprop="name">Compiler Design</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="what-are-we-talking-about-when-we-mention-compiler">What are we
+talking about when we mention “compiler”?</h2>
+<p>Recently I’ve been studying the design of compilers. Unfortunately, I
+got stuck right after getting started because of the following
+image:</p>
+<p><img src="/images/intro_compiler_fig1.png" /></p>
+<p>This diagram illustrates the main components of a compiler, which
+contains a part called “Compiler(cc1)”. This appears completely insane
+to me since I always refer gcc as compiler, then what the heck is
+“cc1”?</p>
+<p>Basically, when we talk about compilation we actually mean the
+process of translating high-level language into machine-level
+language(binary, for example). This process is performed by a
+language-processing system, which is controlled by a program called
+compiler driver(e.g. cc, gcc, clang). A language-processing system
+consists pre-processor, compiler, assembler, and linker. As you can see,
+the so-called compiler is just a component of the language-processing
+system, and its job is to translate source code into assembly code. The
+assembler, linker, and other stuff are not regarded as part of the
+compiler.</p>
+<h2 id="structure-of-the-language-processing-system">Structure of the
+language-processing system</h2>
+<p>Now I have to ask you to look at figure 1 again, let’s break down
+this system and take a closer look at each part:</p>
+<ul>
+<li>Pre-processor: This program modifies the source code before the
+compilation process starts. Its main jobs include copying header files,
+calling macros, and handling conditional compilation directions(e.g.
+#ifdef).</li>
+<li>Compiler: As we’ve already discussed in the previous section, the
+compiler takes the modified source code and translates it into assembly
+code.</li>
+<li>Assembler: The assembler turns assembly code into relocatable object
+file, which can be linked with other object files to build up a large
+application</li>
+<li>Linker: The linker performs the linking task. It deals with external
+memory addresses which refer to data in other files.</li>
+</ul>
+<h2 id="structure-of-the-compiler">Structure of the compiler</h2>
+<p>The compiler is probably the most complicated one in the entire
+system. Generally, compilers are divided into several phases, or passes.
+(Though very few compilers have only one pass)</p>
+<p>Let’s take a typical two-pass compiler for example. The first pass,
+also known as the front end, consists of the following parts:</p>
+<ul>
+<li>Lexical Analyzer(a.k.a scanner)</li>
+<li>Parser</li>
+<li>Code Generator</li>
+</ul>
+<p>The lexical analyzer breaks the source code into lexemes, and
+generates a token for each lexeme. The sequence of tokens will be fed to
+the parser, which builds a tree based on these tokens to represent the
+structure of the entire program. Eventually, the code generator
+generates code in an intermediate language(which is similar to assembly
+language, but it’s slightly different).</p>
+<p>The reason why this pass is called front end is that the code
+generated is platform-independent. That means the same source code
+always produces the same intermediate code, regardless of your
+machine.</p>
+<p>The second pass actually turns the intermediate representation of the
+program into assembly code, it includes:</p>
+<ul>
+<li>Optimizer</li>
+<li>Back End</li>
+</ul>
+<p>The optimizer takes the intermediate code and performs some
+optimization, and finally the back end converts it into assembly
+code.</p>
+<p>There’s an obvious advantage of having two passes rather than only
+one. It’s that we can create different front ends for multiple
+high-level languages(e.g. c, c++, etc.), and these front ends can share
+the same back end because all of them generate intermediate language
+code. Similarly, we can also implement different back ends for different
+machines, and they can work without changing the front end.</p>
+<p><img src="/images/intro_compiler_fig2.png" /></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/06/05/Lexical-Analysis-The-Basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/05/Lexical-Analysis-The-Basics/" class="post-title-link" itemprop="url">Lexical Analysis: The Basics</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-05 12:34:54" itemprop="dateCreated datePublished" datetime="2024-06-05T12:34:54+08:00">2024-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-10 19:02:55" itemprop="dateModified" datetime="2024-08-10T19:02:55+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Compiler-Design/" itemprop="url" rel="index"><span itemprop="name">Compiler Design</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="the-role-of-lexical-analyzer">The Role of Lexical Analyzer</h2>
+<p>As I’ve mentioned in my previous post, the lexical analyzer is a
+component of a compiler that divides the source code into small pieces
+called lexemes and generates a token for each lexemes. The tokens
+generated will be fed to the parser. Lexemes, Tokens, and Patterns</p>
+<ul>
+<li>Lexemes: Lexemes are strings in the source code that cannot be
+further broken down, and a lexeme is the smallest lexical unit.</li>
+<li>Tokens: Tokens are abstract representations of certain kinds of
+lexemes(which means a lexeme is an instance of a certain token).</li>
+</ul>
+<p>Here is a table from Compilers Principles, Techniques, and Tools, it
+perfectly illustrates the differences between lexemes and tokens.</p>
+<p><img src="/images/lexical_lexemes_and_tokens.png" /></p>
+<p>In conclusion, the advantages of having a lexical analyzer are as
+follows:</p>
+<ul>
+<li>Allowing us to detect format errors. e.g. Misspelled identifiers,
+unknown characters, etc.</li>
+<li>Making parsing easier. By turning the entire source code into a
+sequence of tokens, the parser no longer needs to interact with original
+code which might includes comments, white spaces, and many other
+unnecessary stuff that make parsing difficult. As a consequence, the
+speed of parsing is increased.</li>
+</ul>
+<h2 id="implementation-of-a-basic-lexical-analyzer">Implementation of a
+Basic Lexical Analyzer</h2>
+<p>Let’s now make a lexical analyzer that processes arithmetical
+formulas(e.g. 1+2*3). Before we start coding, we should define the set
+of tokens and lexemes first. In this case, all possible lexemes and
+their corresponding tokens are as follows:</p>
+<p><img src="/images/lexical_token_set.png" /></p>
+<p>The main feature we want to implement here is a function called
+get_next_token. This function fetches the next valid token in the input
+stream while ignoring all white spaces and detecting unidentifiable
+lexemes. This function will be called by the parser.</p>
+<p>So firstly we want to define the type of tokens. Without doubt, we
+can simply give each token a unique integer as its index, and we can
+pass tokens as they are integers. However, sometimes we want to add some
+additional information. For example, we want the the INTV token to
+contain both its index and the value of the integer it represents. So
+we’ll need a structure to store tokens:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span>PLUS, MINUS, MULT, DIV, LP, RP, INTV, EOI&#125; lex_type;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    lex_type token;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">&#125; token;</span><br></pre></td></tr></table></figure>
+<p>With struct token now we can implement get_next_token:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">get_next_token</span><span class="params">(token *t)</span> <span class="comment">// return 0 when read EOF or failed, otherwise return the length of lexeme</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="keyword">while</span>((ch = getchar()) &amp;&amp; ch == <span class="string">&#x27; &#x27;</span> &amp;&amp; ch == <span class="string">&#x27;\t&#x27;</span> &amp;&amp; ch ==<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span>(ch) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:   t-&gt;token = PLUS; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:   t-&gt;token = MINUS; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:   t-&gt;token = MULT; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:   t-&gt;token = DIV; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;(&#x27;</span>:   t-&gt;token = LP; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;)&#x27;</span>:   t-&gt;token = RP; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> EOF: <span class="keyword">case</span> <span class="string">&#x27;\n&#x27;</span>: <span class="keyword">case</span> <span class="string">&#x27; &#x27;</span>: <span class="keyword">case</span> <span class="string">&#x27;\t&#x27;</span>:   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">default</span>: <span class="comment">// integers</span></span><br><span class="line">            <span class="keyword">if</span>(!(<span class="string">&#x27;0&#x27;</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>)) &#123; <span class="comment">// not a number </span></span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Invalid lexeme %c!\n&quot;</span>, ch);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            t-&gt;token = INTV;</span><br><span class="line">            <span class="type">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">            t-&gt;val = ch - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            <span class="keyword">while</span>((ch = getchar()) &amp;&amp; <span class="string">&#x27;0&#x27;</span> &lt;= ch &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                t-&gt;val = t-&gt;val * <span class="number">10</span> + ch - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                ++ pos; ++ cnt;</span><br><span class="line">            &#125;</span><br><span class="line">            ungetc(ch, <span class="built_in">stdin</span>);</span><br><span class="line">            <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="buffering">Buffering</h2>
+<p>The code above works just well. However, it’s not that efficient. As
+you probably know, I/O tasks are pretty expensive. While I/O devices are
+reading data(which is really slow), CPU can do no computational job but
+wait for them, so CPU is blocked. In the get_next_token function above,
+we read the input stream character by character, but if we read more
+characters in one go, then we don’t need to access I/O stream so
+frequently. Therefore, buffering the input saves a lot of time.</p>
+<p>There are many ways to implement buffering, and a typical one is
+having one buffer array.</p>
+<p><img src="/images/lexical_buffering.png" /></p>
+<p>Whenever the pointer(pos) reaches the end of the buffer, we fill it
+with new input and then move pos to the first element. By using a
+buffer, we can stop using ungetc(), which only guarantees one
+pushback(so if another function uses ungetc then unknown errors will
+probably occur!).</p>
+<p>But some lexical analyzer implement two buffers instead. Here is an
+example.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">get_next_token</span><span class="params">(FILE *<span class="keyword">restrict</span> stream, token *t)</span></span><br><span class="line">&#123;</span><br><span class="line">    t-&gt;token = EOI;</span><br><span class="line">    <span class="keyword">if</span>(pos == <span class="literal">NULL</span>) &#123; <span class="comment">// Initialization</span></span><br><span class="line">        buf[<span class="number">0</span>] = (<span class="type">char</span>*) <span class="built_in">calloc</span>(DISK_BLOCK_SIZE + <span class="number">1</span>, <span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">        buf[<span class="number">1</span>] = (<span class="type">char</span>*) <span class="built_in">calloc</span>(DISK_BLOCK_SIZE + <span class="number">1</span>, <span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">        <span class="keyword">if</span>(!fgets(buf[<span class="number">0</span>], DISK_BLOCK_SIZE, stream)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        len = <span class="built_in">strlen</span>(buf[<span class="number">0</span>]); pos = buf[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(skip_spaces()) &#123;    </span><br><span class="line">        <span class="keyword">if</span>(pos == &amp;buf[<span class="number">0</span>][DISK_BLOCK_SIZE] || pos == &amp;buf[<span class="number">0</span>][len]) &#123; <span class="comment">// Reached the end of buffer #1</span></span><br><span class="line">            <span class="keyword">if</span>(!fgets(buf[<span class="number">1</span>], DISK_BLOCK_SIZE, stream)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            len = <span class="built_in">strlen</span>(buf[<span class="number">1</span>]); pos = buf[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(pos == &amp;buf[<span class="number">1</span>][DISK_BLOCK_SIZE] || pos == &amp;buf[<span class="number">1</span>][len]) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!fgets(buf[<span class="number">0</span>], DISK_BLOCK_SIZE, stream)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            len = <span class="built_in">strlen</span>(buf[<span class="number">0</span>]); pos = buf[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">switch</span>(*pos) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>: t-&gt;token = PLUS; ret = <span class="number">1</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>: t-&gt;token = MINUS; ret = <span class="number">1</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>: t-&gt;token = MULT; ret = <span class="number">1</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>: t-&gt;token = DIV; ret = <span class="number">1</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;(&#x27;</span>: t-&gt;token = LP; ret = <span class="number">1</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;)&#x27;</span>: t-&gt;token = RP; ret = <span class="number">1</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> EOF: ret = <span class="number">0</span>; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">if</span>(!(<span class="string">&#x27;0&#x27;</span> &lt;= *pos &amp;&amp; *pos &lt;= <span class="string">&#x27;9&#x27;</span>)) &#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Invalid lexeme %c!\n&quot;</span>, *pos);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            t-&gt;token = INTV; ret = read_int(&amp;t-&gt;val);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ++ pos;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The following algorithm is the core idea of having two buffer:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(ch) &#123;</span><br><span class="line">    <span class="keyword">case</span> EOF:</span><br><span class="line">        <span class="keyword">if</span>(at the end of buf1) &#123;</span><br><span class="line">            fgets(buf2, ...);</span><br><span class="line">            pos = buf2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(at the end of buf2) &#123;</span><br><span class="line">            fgets(buf2, ...);</span><br><span class="line">            pos = buf2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="comment">// an EOF found in the middle of a buffer</span></span><br><span class="line">            <span class="keyword">return</span> EOF; <span class="comment">// we reached the end of input stream</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="lookahead">Lookahead</h2>
+<p>Sometimes the parser has to read the next token in the input stream
+without actually taking it from input. We thus need to provide a
+function to implement such feature. It’s just like the ungetc function,
+the only difference is that we are pushing back a lexeme here, instead
+of just a character.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> token t = &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">bool</span> <span class="title function_">match</span><span class="params">(<span class="type">const</span> token *p)</span> <span class="comment">// return true when p is the same type of token as the next one</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(t.token == <span class="number">-1</span>)</span><br><span class="line">        get_next_token(<span class="built_in">stdin</span>, &amp;t);</span><br><span class="line">    <span class="keyword">return</span> t.token == p-&gt;token;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">advance</span><span class="params">()</span> <span class="comment">// move forward to next token</span></span><br><span class="line">&#123;</span><br><span class="line">    get_next_token(<span class="built_in">stdin</span>, &amp;t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/05/18/KMP-Algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/18/KMP-Algorithm/" class="post-title-link" itemprop="url">KMP Algorithm</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-05-18 12:15:20" itemprop="dateCreated datePublished" datetime="2024-05-18T12:15:20+08:00">2024-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-10 19:02:40" itemprop="dateModified" datetime="2024-08-10T19:02:40+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm-Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Algorithm & Data Structure</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm-Data-Structure/String/" itemprop="url" rel="index"><span itemprop="name">String</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>The main problem KMP algorithm solves is locating a pattern string in
+a text string. To understand this algorithm, first let’s consider an
+obvious solution:(the text string is denoted as <span
+class="math inline">\(T_{0…n-1}\)</span> and the patterns string is
+denoted as <span class="math inline">\(P_{0…m-1}\)</span>)</p>
+<p>Considering T = <code>"ABAACAADAABAABA"</code> and P =
+<code>"AABA"</code>, we can compare T and P character by character until
+we reach the end of P, which is:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T: ABAACAADAABAABA</span><br><span class="line">P: AABA </span><br></pre></td></tr></table></figure>
+<p>Obviously the second one is not the same, so we move the pattern
+string forward a bit and go over again:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T: ABAACAADAABAABA</span><br><span class="line">P:  AABA </span><br></pre></td></tr></table></figure>
+<p>Again the first one doesn’t match.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T: ABAACAADAABAABA</span><br><span class="line">P:   AABA </span><br></pre></td></tr></table></figure>
+<p>Apparently, each time we move the pattern string forward a bit, and
+we compare the entire string over again. When we fail we move the
+pattern string again. We can repeat this process until we reach the end
+of text string. The problem is, this algorithm is too slow and its
+complexity is, shockingly, <span
+class="math inline">\(O(nm)\)</span>.</p>
+<p>But is it necessary to compare them so many times? Certainly not.
+<img src="/images/kmp-fig1.jpeg" /></p>
+<p>As shown in fig 1, let’s suppose that we’ve compared <span
+class="math inline">\(P_{0…j}\)</span> with <span
+class="math inline">\(T_{i-j…i-1}\)</span>(the yellow area) and found
+that <span class="math inline">\(P_{j + 1} \neq T_{i}\)</span>. If a
+match is to start somewhere between <span
+class="math inline">\(T_{i-j…i-1}\)</span>, then we can infer that:</p>
+<ol type="1">
+<li>It must begin with the prefix of P(so do all the matches found)</li>
+<li>It must match in <span class="math inline">\(T\)</span> up to <span
+class="math inline">\(k\)</span>(obviously because the length of <span
+class="math inline">\(P\)</span> is bigger than the length of its
+prefix)</li>
+</ol>
+<p>This area is just the part highlighted in yellow, and it is the
+longest prefix of <span class="math inline">\(P\)</span> that is also
+proper suffix of <span class="math inline">\(P_j\)</span>. So we’ll move
+<span class="math inline">\(P\)</span> to where the yellow areas are
+aligned. <img src="/images/kmp-fig2.jpeg" /></p>
+<p>If we store the length of such a string for each <span
+class="math inline">\(P_j\)</span> in a array, then the entire searching
+process can be represented by the following pseudo-code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> mismatch[...];</span><br><span class="line"><span class="type">char</span> *t, *p; <span class="comment">// text string &amp; pattern string</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">search</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">strlen</span>(t + <span class="number">1</span>), m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> i, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; ++ i) &#123; <span class="comment">// assume that the index begins from 1</span></span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != t[i])</span><br><span class="line">            j = mismatch[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == t[i])</span><br><span class="line">            ++ j;</span><br><span class="line">        <span class="keyword">if</span>(j == m) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;a match found at %d\n&quot;</span>, i - m + <span class="number">1</span>);</span><br><span class="line">            j = mismatch[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The while loop might seem confusing so we’ll explain it deeper. The
+main purpose of this loop is to ensure that <span
+class="math inline">\(P_{0…j + 1}\)</span> is correspondent to <span
+class="math inline">\(T_{i - j + 1 … i}\)</span>, which is basically the
+highlighted part in fig 1.2.</p>
+<p>Now the rest part is to compute mismatch, before we explain it, I’ll
+show the code first:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> m = <span class="built_in">strlen</span>(p + <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> i, j = <span class="number">0</span>;</span><br><span class="line">    mismatch[<span class="number">0</span>] = mismatch [<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">2</span>; i &lt;= m; ++ i) &#123;</span><br><span class="line">        <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; p[j + <span class="number">1</span>] != p[i])</span><br><span class="line">            j = mismatch[j];</span><br><span class="line">        <span class="keyword">if</span>(p[j + <span class="number">1</span>] == p[i])</span><br><span class="line">            ++ j;</span><br><span class="line">        mismatch[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Surprisingly it’s very similar to the search() function but this time
+<span class="math inline">\(T\)</span> is replaced by <span
+class="math inline">\(P\)</span>. Indeed, it makes sense because this
+process just extend the substring where the prefix of <span
+class="math inline">\(P\)</span> matches the suffix of <span
+class="math inline">\(T\)</span>, character by character. And by replace
+<span class="math inline">\(T\)</span> we can find the longest prefix
+&amp; suffix of <span class="math inline">\(P\)</span>.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Haorong Xu</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/HaorongX" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
