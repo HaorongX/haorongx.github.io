@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -165,7 +165,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,6 +187,281 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/" class="post-title-link" itemprop="url">Intro to Relational Model & Relational Algebra: Where journey begins</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-08-17 10:30:50" itemprop="dateCreated datePublished" datetime="2024-08-17T10:30:50+08:00">2024-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-08-19 20:49:42" itemprop="dateModified" datetime="2024-08-19T20:49:42+08:00">2024-08-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DBMS/" itemprop="url" rel="index"><span itemprop="name">DBMS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>In 1970, a ground-breaking paper by Edgar F. Codd <span
+class="math inline">\(^{[1]}\)</span> was published. This paper proposed
+the relational model and non-procedural way to query data in relational
+model, which led to the birth of RDBMS. In this article, we review some
+basic concepts in relational model, and briefly introduce relational
+algebra.</p>
+<h2 id="relational-model">Relational Model</h2>
+<p>Data models describe how data is organized in a database. A
+relational database, as you are probably aware of, mainly consists of a
+set of tables, which have mutiple columns(attributes) and rows(tuples).
+As highlited in <em>Database System Concepts</em><span
+class="math inline">\(^{[2]}\)</span> that</p>
+<blockquote>
+<p>A row in a table represents a relationship among a set of values.
+Since a table is a collection of such relationships, there is a close
+correspondence between the concept of table and the mathematical concept
+of relation...</p>
+</blockquote>
+<p>However, the definition of <strong>relation</strong> is slightly
+different. Considering a <em>students</em> table which consists of three
+columns: <em>ID, dept., and grade</em>. For every single attribute, its
+domain is the set of all acceptable values. <em>e.g.</em>, for attribute
+<em>grade</em>, its domain <span class="math inline">\(D\)</span> might
+consists of <span class="math inline">\(\{A*, A, B, C, D, U\}\)</span>.
+And a relation <span class="math inline">\(R\)</span> is a subset of the
+cartesian product of its columns. <em>Cartesian product</em> basically
+means all possible combinations. Using the example of <em>students</em>
+table, domains of its attributes might be:</p>
+<ul>
+<li><span class="math inline">\(D_{ID} = {x: x = n , n \in N, n \geq
+0}\)</span></li>
+<li><span class="math inline">\(D_{dept} = {Engineering, Business,
+Computer \space Science, Social \space Science}\)</span></li>
+<li><span class="math inline">\(D_{grade} = \{A*, A, B, C, D,
+U\}\)</span></li>
+</ul>
+<p>So the cartesian product includes: <span class="math inline">\(&lt;0,
+Computer \space Science, A*&gt;, &lt;2, Social \space Science, U&gt;,
+&lt;3, Bussiness, B&gt;\)</span> etc.</p>
+<h3 id="superkey-cadidate-key-primary-key">Superkey, Cadidate Key,
+Primary Key</h3>
+<p>A superkey refers to a set of attributes which uniquely identifies
+each tuple in a relation. For example, in our previous <em>students</em>
+relation, ID is a superkey since each student is assigned with a unique
+ID.</p>
+<p>If a superkey has no proper subset such that it's also a superkey of
+this relation, then this superkey is also called a <strong>cadidate
+key</strong>. (i.e. A cadidate key is a superkey which contains of the
+minimum number of attributes)</p>
+<p>A primary key simply means a cadidate key which is chosen by the user
+to identify tuples within a relation. Clearly, there cannot be two
+completely same primary keys at the same time.(This is called
+primary-key constraint)</p>
+<h3 id="foreign-key">Foreign Key</h3>
+<p>A foreign-key constraint from <span
+class="math inline">\(R_1.A\)</span> (attribute <span
+class="math inline">\(A\)</span> of relation <span
+class="math inline">\(R_1\)</span>) to <span
+class="math inline">\(R_2.B\)</span>(B is the primary key of <span
+class="math inline">\(R_2\)</span>) states that every single value of
+<span class="math inline">\(R_1.A\)</span> must exist in <span
+class="math inline">\(R_2.B\)</span>. Attribute <span
+class="math inline">\(R_1.A\)</span> is named the <strong>foreign
+key</strong> from <span class="math inline">\(R_1.A\)</span> referencing
+<span class="math inline">\(R_2.B \space ^{[1]}\)</span>.</p>
+<p>e.g. Considering our <em>students</em> table, let's say we have
+another <em>departments</em> table, which is defined as
+<code>departments(name, staff, students, avg_salary)</code>, and
+<code>name</code> attribute is the primary key of this relation. Then
+<em>dept</em> column in <em>students</em> table is a foreign key
+referencing to <em>name</em> column in <em>departments</em> table.</p>
+<h2 id="relational-algebra">Relational Algebra</h2>
+<p>The relational algebra mainly contains a set of operations which take
+one or two relation(s) as input and produce a new relation (Operations
+that only take one relation as input is called <strong>unary</strong>
+operations. Similarly, operations that takes two relations are named
+<strong>binary</strong> operations). These operators were first defined
+in Edgar F. Codd's paper published in 1970([1]), and summarized in his
+another paper([3]). In the following sections, a brief description of
+each operation from his paper will present, and further explaination
+will be added.</p>
+<h3 id="select-operation">Select Operation</h3>
+<blockquote>
+<p>The <strong>select</strong> operator of the relational algebra takes
+one relation as operand and produces a new relation consisting of
+selected tuples of the first.<span
+class="math inline">\(^{[3]}\)</span></p>
+</blockquote>
+<p>The select operator is denoted as <em>sigma</em> <span
+class="math inline">\(\sigma\)</span>. For example, if we want to find
+tuples in the <em>students</em> table which ID equals to 1, we
+write:</p>
+<p><span class="math display">\[ \sigma_{ID=1}(students) \]</span></p>
+<p>Moreover, we can use logic connectives to combine mutiple predicates,
+for example: (Common logic connectives include AND <span
+class="math inline">\(\land\)</span>, OR <span
+class="math inline">\(\lor\)</span>, and NOT <span
+class="math inline">\(\lnot\)</span>)</p>
+<p><span class="math display">\[ \sigma_{ID \leq 500 \space \land \space
+Dept = &quot;Engineering&quot;}(students) \]</span></p>
+<h3 id="project-operation">Project Operation</h3>
+<blockquote>
+<p>The PROJECT operator(<span class="math inline">\(\Pi\)</span>) also
+transforms one relation (table) into a new one, this time however
+consisting of selected attributes (columns) of the first. <span
+class="math inline">\(^{[3]}\)</span></p>
+</blockquote>
+<p>e.g. <span class="math display">\[\Pi_{ID,
+Dept}(students)\]</span></p>
+<p>This operation gives us the <em>students</em> table without
+<em>grade</em> column.</p>
+<p>This operator is pretty straightforward, but it's worth addressed
+that this operator also takes expressions involving attributes as input,
+for example:</p>
+<p><span class="math display">\[\Pi_{ID*2, Dept}(students)\]</span></p>
+<p>By performing this operation, every student's ID is timed by 2.</p>
+<h3 id="join-operation">Join Operation</h3>
+<p>Sometimes we have to combine information in two different relations.
+For instance, if we want to find the information of the department of
+each student, then we have to combine relation <em>students</em> and
+<em>departments</em>. To extract information in both relations, we can
+apply <strong>cartesian product</strong>(denoted as <span
+class="math inline">\(\times\)</span>), which combines each tuple in a
+relation with each tuple in another. Considering the following two
+relations, <em>students</em> and <em>departments</em>:</p>
+<p><img src="/images/intro_to_relational_model_students.png" /> <img
+src="/images/intro_to_relational_model_dept.png" /></p>
+<p>Then their cartesian product will be:</p>
+<p><img src="/images/intro_to_relational_model_cartproduct.png" /></p>
+<p>However, the highlighted tuples shown in the figure is obviously
+worthless since these tuples connected irrelevent rows together.(We only
+want the information of a student and their corresponding departments)
+To get rid of the mismatching data, we shall add a predicate:</p>
+<p><span class="math display">\[\sigma_{students.dept =
+departments.name}(students\times departments)\]</span></p>
+<p>The join operation allows us to combine a selection and a Cartesian
+product into a single operation.<span
+class="math inline">\(^{[2]}\)</span> The join operation(<span
+class="math inline">\(\bowtie\)</span>) is defined as:</p>
+<p><span class="math display">\[R_1 \bowtie_\theta R_2 =
+\sigma_\theta(R_1 \times R_2)\]</span></p>
+<p>(<span class="math inline">\(R_1, R_2\)</span> are two relations
+taken as operands. <span class="math inline">\(\theta\)</span>
+represents a predicate on attributes in <span
+class="math inline">\(R_1\)</span> and <span
+class="math inline">\(R_2\)</span>.)</p>
+<p>Thus our previous operation can be rewritten as</p>
+<p><span class="math display">\[students\bowtie_{students.dept =
+departments.name} departments\]</span></p>
+<h3 id="set-operations">Set Operations</h3>
+<p>Set operations mainly include <strong>union</strong>,
+<strong>intersection</strong>, and <strong>set-difference</strong>.</p>
+<p>The union operation allows us to combine two sets of tuples, which is
+denoted as <span class="math inline">\(\cup\)</span>. e.g.</p>
+<p><span class="math display">\[\sigma_{ID=1}(students) \cup
+\sigma_{dept=Fine\space Arts}(students)\]</span></p>
+<p>This expression finds students that have ID 1 or study Fine Arts.</p>
+<p>Similarly, the intersection operation(<span
+class="math inline">\(\cap\)</span>) allows us to find tuples that exist
+in both relations, e.g.</p>
+<p><span class="math display">\[\sigma_{ID=1}(students) \cap
+\sigma_{dept=Fine\space Arts}(students)\]</span></p>
+<p>We also have the set-difference operator(<span
+class="math inline">\(-\)</span>) which finds tuples that exist in first
+relation but not in the second.</p>
+<p><span class="math display">\[\sigma_{dept=Fine\space Arts}(students)
+- \sigma_{ID=1}(students)\]</span></p>
+<p>This expression finds students who study Fine Arts but have ID not
+equal to 1.</p>
+<h3 id="assignment-operation">Assignment Operation</h3>
+<p>The assignment operation(<span
+class="math inline">\(\leftarrow\)</span>) allows you to give a
+relational expression a different name for your convenience, for
+instance:</p>
+<p><span class="math display">\[ StudentsWhoLearnCS \leftarrow
+\sigma_{dept=CS} (students)\]</span></p>
+<p>And then you can refer to students who study at CS department as
+<span class="math inline">\(StudentsWhoLearnCS\)</span>.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><strong>[1]</strong> Edgar F. Codd, 1970. A Relational Model of Data
+for Large Shared Data Banks. Communications of the ACM 13, 377–387. <a
+target="_blank" rel="noopener" href="https://doi.org/10.1145/362384.362685"
+class="uri">https://doi.org/10.1145/362384.362685</a></li>
+<li><strong>[2]</strong> Abraham Silberschatz, Henry F. Korth, S.
+Sudarshan, n.d. Database System Concepts, 7th Edition. ed.</li>
+<li><strong>[3]</strong> Codd, E.F., 1982. Relational database: a
+practical foundation for productivity. Commun. ACM 25, 109–117. <a
+target="_blank" rel="noopener" href="https://doi.org/10.1145/358396.358400"
+class="uri">https://doi.org/10.1145/358396.358400</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

@@ -1,3 +1,4 @@
+https://haorongx.github.io/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/
 https://haorongx.github.io/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/
 https://haorongx.github.io/2024/06/05/Lexical-Analysis-The-Basics/
 https://haorongx.github.io/2024/05/18/KMP-Algorithm/
@@ -11,6 +12,7 @@ https://haorongx.github.io/
 https://haorongx.github.io/tags/DBMS/
 https://haorongx.github.io/tags/Storage/
 https://haorongx.github.io/tags/Column-Oriented-Storage/
+https://haorongx.github.io/tags/Relational-Algebra/
 https://haorongx.github.io/tags/Compiler-Design/
 https://haorongx.github.io/tags/Algorithm/
 https://haorongx.github.io/tags/Lexical-Analysis/

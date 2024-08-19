@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://haorongx.github.io/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/</loc>
+    
+    <lastmod>2024-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://haorongx.github.io/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/</loc>
     
     <lastmod>2024-08-10</lastmod>
@@ -85,7 +94,7 @@
 
   <url>
     <loc>https://haorongx.github.io/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,49 +102,56 @@
   
   <url>
     <loc>https://haorongx.github.io/tags/DBMS/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Storage/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Column-Oriented-Storage/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://haorongx.github.io/tags/Relational-Algebra/</loc>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Compiler-Design/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Algorithm/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Lexical-Analysis/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/PostgreSQL/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -144,35 +160,35 @@
   
   <url>
     <loc>https://haorongx.github.io/categories/DBMS/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/Compiler-Design/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/Algorithm-Data-Structure/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/DBMS/PostgreSQL/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/Algorithm-Data-Structure/String/</loc>
-    <lastmod>2024-08-10</lastmod>
+    <lastmod>2024-08-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
