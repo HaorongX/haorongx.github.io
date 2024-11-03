@@ -1,5 +1,6 @@
-https://haorongx.github.io/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/
+https://haorongx.github.io/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/
 https://haorongx.github.io/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/
+https://haorongx.github.io/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/
 https://haorongx.github.io/2024/06/05/Lexical-Analysis-The-Basics/
 https://haorongx.github.io/2024/05/18/KMP-Algorithm/
 https://haorongx.github.io/2024/06/10/Introduction-to-Compiler-Design/
@@ -9,14 +10,18 @@ https://haorongx.github.io/about/index.html
 https://haorongx.github.io/tags/index.html
 https://haorongx.github.io/categories/index.html
 https://haorongx.github.io/
+https://haorongx.github.io/tags/RISC-V/
+https://haorongx.github.io/tags/Computer-Organization/
 https://haorongx.github.io/tags/DBMS/
 https://haorongx.github.io/tags/Storage/
 https://haorongx.github.io/tags/Column-Oriented-Storage/
 https://haorongx.github.io/tags/Relational-Algebra/
+https://haorongx.github.io/tags/Data-Model/
 https://haorongx.github.io/tags/Compiler-Design/
 https://haorongx.github.io/tags/Algorithm/
 https://haorongx.github.io/tags/Lexical-Analysis/
 https://haorongx.github.io/tags/PostgreSQL/
+https://haorongx.github.io/categories/RISC-V/
 https://haorongx.github.io/categories/DBMS/
 https://haorongx.github.io/categories/Compiler-Design/
 https://haorongx.github.io/categories/Algorithm-Data-Structure/

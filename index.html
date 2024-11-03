@@ -154,18 +154,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,6 +187,126 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/" class="post-title-link" itemprop="url">A Glance at RISC-V: A Beginner's Perspective</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-11-02 20:57:26" itemprop="dateCreated datePublished" datetime="2024-11-02T20:57:26+08:00">2024-11-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-03 16:18:11" itemprop="dateModified" datetime="2024-11-03T16:18:11+08:00">2024-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RISC-V/" itemprop="url" rel="index"><span itemprop="name">RISC-V</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Have you ever considered how computers interpret the C code you
+produce? If you are aware of the fact that you cannot execute a .c file
+directly, then you must have realized that C is not the language of
+computers(At least it's not the language that controls the computer
+directly). The language of computers is called
+<strong>instructions</strong>, and the set of all instructions is,
+obviously, <strong>instruction set</strong>. There are many instruction
+sets, just like there are quite a lot dialects of a language. The one we
+study here is <strong>RISC-V</strong>(pronuonced 'risk-five'), which is
+an open standard Instruction Set Architecture.</p>
+<p><strong>RISC</strong> stands for <strong>R</strong>educed
+<strong>I</strong>nstruction <strong>S</strong>et
+<strong>C</strong>omputer, which is an highly universal, simple, and
+optimized instruction set. RISC has instructions that each performs a
+very simple task, which leads to lower execution time (as well as power
+consumption) but higher instruction count. CISC (Complex Instruction Set
+Architecture), by contrast, has instructions that perform highly
+specialized and complicated tasks.</p>
+<p>The RISC-V ISA includes a minimal instruction set and multiple
+optional extensions, which brings great flexibility and simplicity.
+Bell. C. Gordon points out that a main problem with ISAs today (e.g.
+80x60) is that they inherited too many mistakes of past extensions (e.g.
+implemented useless features), which keeps the size of the ISA growing.
+With RISC-V and its minimal base instructions set, similar issues are
+prevented.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><p><em>What is RISC?</em>, Arm, <a
+target="_blank" rel="noopener" href="https://www.arm.com/glossary/risc"
+class="uri">https://www.arm.com/glossary/risc</a></p></li>
+<li><p>Bell, C.G., n.d. <em>In Praise of The RISC-V
+Reader</em>.</p></li>
+<li><p>David A. Patterson, John L. Hennessy, n.d. <em>Computer
+Organization and Design: The Hardware/Software Interface</em>, RISC-V
+Edition. ed.</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -232,7 +352,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-08-19 20:49:42" itemprop="dateModified" datetime="2024-08-19T20:49:42+08:00">2024-08-19</time>
+      <time title="Modified: 2024-08-21 14:03:55" itemprop="dateModified" datetime="2024-08-21T14:03:55+08:00">2024-08-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -783,9 +903,15 @@ class="uri">https://www.simplilearn.com/fact-table-vs-dimension-table-article</a
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-08-10 18:47:28 / Modified: 19:44:49" itemprop="dateCreated datePublished" datetime="2024-08-10T18:47:28+08:00">2024-08-10</time>
+      <time title="Created: 2024-08-10 18:47:28" itemprop="dateCreated datePublished" datetime="2024-08-10T18:47:28+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-09-22 11:47:27" itemprop="dateModified" datetime="2024-09-22T11:47:27+08:00">2024-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -868,7 +994,8 @@ below:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ItemIdData</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">unsigned</span>    lp_off:<span class="number">15</span>,      <span class="comment">/* offset to tuple (from start of page) */</span></span><br><span class="line">                lp_flags:<span class="number">2</span>,     <span class="comment">/* state of line pointer, see below */</span></span><br><span class="line">                lp_len:<span class="number">15</span>;      <span class="comment">/* byte length of tuple */</span></span><br><span class="line">&#125; ItemIdData;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* lp_flags has these possible states.  An UNUSED line pointer is available</span></span><br><span class="line"><span class="comment">* for immediate re-use, the other states are not.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_UNUSED       0       <span class="comment">/* unused (should always have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_NORMAL       1       <span class="comment">/* used (should always have lp_len&gt;0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_REDIRECT     2       <span class="comment">/* HOT redirect (should have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_DEAD         3       <span class="comment">/* dead, may or may not have storage */</span></span></span><br></pre></td></tr></table></figure>
 <p>By specifying offest and length, we can find a tuple easily. A tuple
 begins at <code>page + lp_off</code> and ends at
-<code>page + lp_off + lp_len - 1</code>. Insert Tuples</p>
+<code>page + lp_off + lp_len - 1</code>.</p>
+<h3 id="insert-tuples">Insert Tuples</h3>
 <p>Inserting tuples is implemented with function PageAddItemExtended in
 bufpage.c. I briefly summarized the entire process, which is</p>
 <ol type="1">

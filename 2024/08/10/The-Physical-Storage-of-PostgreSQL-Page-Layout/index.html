@@ -28,7 +28,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://haorongx.github.io/images/pagelayout1.svg">
 <meta property="article:published_time" content="2024-08-10T10:47:28.000Z">
-<meta property="article:modified_time" content="2024-08-10T11:44:49.770Z">
+<meta property="article:modified_time" content="2024-09-22T03:47:27.588Z">
 <meta property="article:author" content="Haorong Xu">
 <meta property="article:tag" content="DBMS">
 <meta property="article:tag" content="Storage">
@@ -148,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#database-cluster"><span class="nav-number">1.</span> <span class="nav-text">Database Cluster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#heap-table"><span class="nav-number">2.</span> <span class="nav-text">Heap Table</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#database-cluster"><span class="nav-number">1.</span> <span class="nav-text">Database Cluster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#heap-table"><span class="nav-number">2.</span> <span class="nav-text">Heap Table</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#insert-tuples"><span class="nav-number">2.1.</span> <span class="nav-text">Insert Tuples</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,18 +163,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -234,9 +234,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-08-10 18:47:28 / Modified: 19:44:49" itemprop="dateCreated datePublished" datetime="2024-08-10T18:47:28+08:00">2024-08-10</time>
+      <time title="Created: 2024-08-10 18:47:28" itemprop="dateCreated datePublished" datetime="2024-08-10T18:47:28+08:00">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-09-22 11:47:27" itemprop="dateModified" datetime="2024-09-22T11:47:27+08:00">2024-09-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -325,7 +331,8 @@ below:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ItemIdData</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">unsigned</span>    lp_off:<span class="number">15</span>,      <span class="comment">/* offset to tuple (from start of page) */</span></span><br><span class="line">                lp_flags:<span class="number">2</span>,     <span class="comment">/* state of line pointer, see below */</span></span><br><span class="line">                lp_len:<span class="number">15</span>;      <span class="comment">/* byte length of tuple */</span></span><br><span class="line">&#125; ItemIdData;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* lp_flags has these possible states.  An UNUSED line pointer is available</span></span><br><span class="line"><span class="comment">* for immediate re-use, the other states are not.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_UNUSED       0       <span class="comment">/* unused (should always have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_NORMAL       1       <span class="comment">/* used (should always have lp_len&gt;0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_REDIRECT     2       <span class="comment">/* HOT redirect (should have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_DEAD         3       <span class="comment">/* dead, may or may not have storage */</span></span></span><br></pre></td></tr></table></figure>
 <p>By specifying offest and length, we can find a tuple easily. A tuple
 begins at <code>page + lp_off</code> and ends at
-<code>page + lp_off + lp_len - 1</code>. Insert Tuples</p>
+<code>page + lp_off + lp_len - 1</code>.</p>
+<h3 id="insert-tuples">Insert Tuples</h3>
 <p>Inserting tuples is implemented with function PageAddItemExtended in
 bufpage.c. I briefly summarized the entire process, which is</p>
 <ol type="1">

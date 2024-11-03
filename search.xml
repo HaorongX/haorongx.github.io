@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>A Glance at RISC-V: A Beginner&#39;s Perspective</title>
+    <url>/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/</url>
+    <content><![CDATA[<p>Have you ever considered how computers interpret the C code you
+produce? If you are aware of the fact that you cannot execute a .c file
+directly, then you must have realized that C is not the language of
+computers(At least it's not the language that controls the computer
+directly). The language of computers is called
+<strong>instructions</strong>, and the set of all instructions is,
+obviously, <strong>instruction set</strong>. There are many instruction
+sets, just like there are quite a lot dialects of a language. The one we
+study here is <strong>RISC-V</strong>(pronuonced 'risk-five'), which is
+an open standard Instruction Set Architecture.</p>
+<p><strong>RISC</strong> stands for <strong>R</strong>educed
+<strong>I</strong>nstruction <strong>S</strong>et
+<strong>C</strong>omputer, which is an highly universal, simple, and
+optimized instruction set. RISC has instructions that each performs a
+very simple task, which leads to lower execution time (as well as power
+consumption) but higher instruction count. CISC (Complex Instruction Set
+Architecture), by contrast, has instructions that perform highly
+specialized and complicated tasks.</p>
+<p>The RISC-V ISA includes a minimal instruction set and multiple
+optional extensions, which brings great flexibility and simplicity.
+Bell. C. Gordon points out that a main problem with ISAs today (e.g.
+80x60) is that they inherited too many mistakes of past extensions (e.g.
+implemented useless features), which keeps the size of the ISA growing.
+With RISC-V and its minimal base instructions set, similar issues are
+prevented.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><p><em>What is RISC?</em>, Arm, <a
+href="https://www.arm.com/glossary/risc"
+class="uri">https://www.arm.com/glossary/risc</a></p></li>
+<li><p>Bell, C.G., n.d. <em>In Praise of The RISC-V
+Reader</em>.</p></li>
+<li><p>David A. Patterson, John L. Hennessy, n.d. <em>Computer
+Organization and Design: The Hardware/Software Interface</em>, RISC-V
+Edition. ed.</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>RISC-V</category>
+      </categories>
+      <tags>
+        <tag>RISC-V</tag>
+        <tag>Computer Organization</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Column-stores vs. row-stores: how different are they really? : A Brief Summary</title>
     <url>/2024/08/10/Column-stores-vs-row-stores-how-different-are-they-really-A-Brief-Summary/</url>
     <content><![CDATA[<h2 id="background-introduction">Background &amp; Introduction</h2>
@@ -420,6 +468,7 @@ class="uri">https://doi.org/10.1145/358396.358400</a></li>
       <tags>
         <tag>DBMS</tag>
         <tag>Relational Algebra</tag>
+        <tag>Data Model</tag>
       </tags>
   </entry>
   <entry>
@@ -795,7 +844,8 @@ below:</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ItemIdData</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">unsigned</span>    lp_off:<span class="number">15</span>,      <span class="comment">/* offset to tuple (from start of page) */</span></span><br><span class="line">                lp_flags:<span class="number">2</span>,     <span class="comment">/* state of line pointer, see below */</span></span><br><span class="line">                lp_len:<span class="number">15</span>;      <span class="comment">/* byte length of tuple */</span></span><br><span class="line">&#125; ItemIdData;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* lp_flags has these possible states.  An UNUSED line pointer is available</span></span><br><span class="line"><span class="comment">* for immediate re-use, the other states are not.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_UNUSED       0       <span class="comment">/* unused (should always have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_NORMAL       1       <span class="comment">/* used (should always have lp_len&gt;0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_REDIRECT     2       <span class="comment">/* HOT redirect (should have lp_len=0) */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LP_DEAD         3       <span class="comment">/* dead, may or may not have storage */</span></span></span><br></pre></td></tr></table></figure>
 <p>By specifying offest and length, we can find a tuple easily. A tuple
 begins at <code>page + lp_off</code> and ends at
-<code>page + lp_off + lp_len - 1</code>. Insert Tuples</p>
+<code>page + lp_off + lp_len - 1</code>.</p>
+<h3 id="insert-tuples">Insert Tuples</h3>
 <p>Inserting tuples is implemented with function PageAddItemExtended in
 bufpage.c. I briefly summarized the entire process, which is</p>
 <ol type="1">
