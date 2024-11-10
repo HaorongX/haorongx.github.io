@@ -19,31 +19,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"haorongx.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="What are we talking about when we mention “compiler”? Recently I’ve been studying the design of compilers. Unfortunately, I got stuck right after getting started because of the following image:  This">
+    <meta name="description" content="As introduced in the previous article, RISC-V ISA consists of a basic ISA and multiple extensions. The instruction set called RV32I is exactly the basic one. The instructions defined in RV32I can be m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Introduction to Compiler Design">
-<meta property="og:url" content="https://haorongx.github.io/2024/06/10/Introduction-to-Compiler-Design/index.html">
+<meta property="og:title" content="Basic Arithimetic Instructions in RV32I">
+<meta property="og:url" content="https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/index.html">
 <meta property="og:site_name" content="Haorong&#39;s Blog">
-<meta property="og:description" content="What are we talking about when we mention “compiler”? Recently I’ve been studying the design of compilers. Unfortunately, I got stuck right after getting started because of the following image:  This">
+<meta property="og:description" content="As introduced in the previous article, RISC-V ISA consists of a basic ISA and multiple extensions. The instruction set called RV32I is exactly the basic one. The instructions defined in RV32I can be m">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://haorongx.github.io/images/intro_compiler_fig1.png">
-<meta property="og:image" content="https://haorongx.github.io/images/intro_compiler_fig2.png">
-<meta property="article:published_time" content="2024-06-10T10:41:27.000Z">
-<meta property="article:modified_time" content="2024-08-10T11:02:21.523Z">
+<meta property="og:image" content="https://haorongx.github.io/images/ISA1-R-Type.png">
+<meta property="og:image" content="https://haorongx.github.io/image/ISA-Itype.png">
+<meta property="article:published_time" content="2024-11-03T09:30:26.000Z">
+<meta property="article:modified_time" content="2024-11-10T11:47:06.082Z">
 <meta property="article:author" content="Haorong Xu">
-<meta property="article:tag" content="Compiler Design">
+<meta property="article:tag" content="RISC-V">
+<meta property="article:tag" content="ISA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://haorongx.github.io/images/intro_compiler_fig1.png">
+<meta name="twitter:image" content="https://haorongx.github.io/images/ISA1-R-Type.png">
 
 
-<link rel="canonical" href="https://haorongx.github.io/2024/06/10/Introduction-to-Compiler-Design/">
+<link rel="canonical" href="https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://haorongx.github.io/2024/06/10/Introduction-to-Compiler-Design/","path":"2024/06/10/Introduction-to-Compiler-Design/","title":"Introduction to Compiler Design"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/","path":"2024/11/03/Arthimetic-Instructions-in-RV32I/","title":"Basic Arithimetic Instructions in RV32I"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Introduction to Compiler Design | Haorong's Blog</title>
+<title>Basic Arithimetic Instructions in RV32I | Haorong's Blog</title>
   
 
 
@@ -147,9 +148,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#what-are-we-talking-about-when-we-mention-compiler"><span class="nav-number">1.</span> <span class="nav-text">What are we
-talking about when we mention “compiler”?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#structure-of-the-language-processing-system"><span class="nav-number">2.</span> <span class="nav-text">Structure of the
-language-processing system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#structure-of-the-compiler"><span class="nav-number">3.</span> <span class="nav-text">Structure of the compiler</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#risc-v-registers"><span class="nav-number">1.</span> <span class="nav-text">RISC-V Registers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instruction-format"><span class="nav-number">2.</span> <span class="nav-text">Instruction Format</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#r-type"><span class="nav-number">2.1.</span> <span class="nav-text">R-Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-type"><span class="nav-number">2.2.</span> <span class="nav-text">I-Type</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other-arthimetic-instructions"><span class="nav-number">3.</span> <span class="nav-text">Other Arthimetic
+Instructions</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -207,7 +207,7 @@ language-processing system</span></a></li><li class="nav-item nav-level-2"><a cl
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/06/10/Introduction-to-Compiler-Design/">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
@@ -220,12 +220,12 @@ language-processing system</span></a></li><li class="nav-item nav-level-2"><a cl
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Introduction to Compiler Design | Haorong's Blog">
+      <meta itemprop="name" content="Basic Arithimetic Instructions in RV32I | Haorong's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Introduction to Compiler Design
+          Basic Arithimetic Instructions in RV32I
         </h1>
 
         <div class="post-meta-container">
@@ -236,14 +236,14 @@ language-processing system</span></a></li><li class="nav-item nav-level-2"><a cl
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2024-06-10 18:41:27" itemprop="dateCreated datePublished" datetime="2024-06-10T18:41:27+08:00">2024-06-10</time>
+      <time title="Created: 2024-11-03 17:30:26" itemprop="dateCreated datePublished" datetime="2024-11-03T17:30:26+08:00">2024-11-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-08-10 19:02:21" itemprop="dateModified" datetime="2024-08-10T19:02:21+08:00">2024-08-10</time>
+      <time title="Modified: 2024-11-10 19:47:06" itemprop="dateModified" datetime="2024-11-10T19:47:06+08:00">2024-11-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,7 +251,7 @@ language-processing system</span></a></li><li class="nav-item nav-level-2"><a cl
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Compiler-Design/" itemprop="url" rel="index"><span itemprop="name">Compiler Design</span></a>
+          <a href="/categories/RISC-V/" itemprop="url" rel="index"><span itemprop="name">RISC-V</span></a>
         </span>
     </span>
 
@@ -271,81 +271,158 @@ language-processing system</span></a></li><li class="nav-item nav-level-2"><a cl
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="what-are-we-talking-about-when-we-mention-compiler">What are we
-talking about when we mention “compiler”?</h2>
-<p>Recently I’ve been studying the design of compilers. Unfortunately, I
-got stuck right after getting started because of the following
-image:</p>
-<p><img src="/images/intro_compiler_fig1.png" /></p>
-<p>This diagram illustrates the main components of a compiler, which
-contains a part called “Compiler(cc1)”. This appears completely insane
-to me since I always refer gcc as compiler, then what the heck is
-“cc1”?</p>
-<p>Basically, when we talk about compilation we actually mean the
-process of translating high-level language into machine-level
-language(binary, for example). This process is performed by a
-language-processing system, which is controlled by a program called
-compiler driver(e.g. cc, gcc, clang). A language-processing system
-consists pre-processor, compiler, assembler, and linker. As you can see,
-the so-called compiler is just a component of the language-processing
-system, and its job is to translate source code into assembly code. The
-assembler, linker, and other stuff are not regarded as part of the
-compiler.</p>
-<h2 id="structure-of-the-language-processing-system">Structure of the
-language-processing system</h2>
-<p>Now I have to ask you to look at figure 1 again, let’s break down
-this system and take a closer look at each part:</p>
+    <div class="post-body" itemprop="articleBody"><p>As introduced in the previous article, RISC-V ISA consists of a basic
+ISA and multiple extensions. The instruction set called
+<strong>RV32I</strong> is exactly the basic one. The instructions
+defined in RV32I can be mainly classified into 4 types, which perform
+interger computation, loading, storing, and control transfer.</p>
+<h2 id="risc-v-registers">RISC-V Registers</h2>
+<p>A register is a component in CPU that stores very limited amount of
+data. Their sizes are usually very small, but have a great I/O speed.
+Each register has its distinct role so make sure not to mess them up and
+use appropriate register.</p>
+<p>Typically, a RISC-V processor has the following registers:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Address</th>
+<th>a.k.a</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>x0</td>
+<td>Zero</td>
+<td>Hardwired zero</td>
+</tr>
+<tr class="even">
+<td>x1</td>
+<td>ra</td>
+<td>Returne address</td>
+</tr>
+<tr class="odd">
+<td>x2</td>
+<td>sp</td>
+<td>Stack Pointer</td>
+</tr>
+<tr class="even">
+<td>x3</td>
+<td>gp</td>
+<td>Global Pointer</td>
+</tr>
+<tr class="odd">
+<td>x4</td>
+<td>tp</td>
+<td>Thread Pointer</td>
+</tr>
+<tr class="even">
+<td>x5 ~ x7</td>
+<td>t0 ~ t2</td>
+<td>Temporary</td>
+</tr>
+<tr class="odd">
+<td>x8</td>
+<td>s0 or fp</td>
+<td>Frame Pointer</td>
+</tr>
+<tr class="even">
+<td>x9</td>
+<td>s1</td>
+<td>Saved Register</td>
+</tr>
+<tr class="odd">
+<td>x10 ~ x17</td>
+<td>a0 ~ a7</td>
+<td>Function Argument</td>
+</tr>
+<tr class="even">
+<td>x18 ~ x27</td>
+<td>s2 ~ s11</td>
+<td>Saved Register</td>
+</tr>
+<tr class="odd">
+<td>x28 ~ x31</td>
+<td>t3 ~ t6</td>
+<td>Temporary</td>
+</tr>
+<tr class="even">
+<td>N/A</td>
+<td>pc</td>
+<td>Program Counter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="instruction-format">Instruction Format</h2>
+<h3 id="r-type">R-Type</h3>
+<p>This group of instructions mainly perform basic computation,
+including arithmetic, logical, and shift(i.e. shift left) computation.
+They can take two 32-bit registers as operands and write the result to
+another 32-bit register. Here is an example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add x10, x8, x9</span><br></pre></td></tr></table></figure>
+<p>This instruction adds values stored in register x8 and x9, then write
+their sum to register x10.</p>
+<p>If you compile this assembly instruction you'll see something like
+this, which is the machine code (binary representation) of this
+instruction:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000000100101000000010100110011</span><br></pre></td></tr></table></figure>
+<p>The <code>add</code> instruction is of <strong>R-type</strong>, which
+is the type of instructions that take two registers as operands, it is
+encoded in such a way:</p>
+<p><img src="/images/ISA1-R-Type.png" /></p>
+<p>The image shows that the machine code includes 6 parts, which
+are:</p>
 <ul>
-<li>Pre-processor: This program modifies the source code before the
-compilation process starts. Its main jobs include copying header files,
-calling macros, and handling conditional compilation directions(e.g.
-#ifdef).</li>
-<li>Compiler: As we’ve already discussed in the previous section, the
-compiler takes the modified source code and translates it into assembly
-code.</li>
-<li>Assembler: The assembler turns assembly code into relocatable object
-file, which can be linked with other object files to build up a large
-application</li>
-<li>Linker: The linker performs the linking task. It deals with external
-memory addresses which refer to data in other files.</li>
+<li>rd: This field gives where the result should be stored. Since we
+specified the result should go to x10, this field has the value <span
+class="math inline">\((01010)_2 = (10)_{10}\)</span>.</li>
+<li>rs1 &amp; rs2: These two fields specifie the operands, in this case,
+they are x8(<span class="math inline">\((01000)_2 = (8)_{10}\)</span>)
+and x9((<span class="math inline">\((01001)_2 = (9)_{10}\)</span>))
+respectively.</li>
+<li>opcode, funct3, funct7: They work together to state which
+instruction it is, which is <code>add</code> in this case.</li>
 </ul>
-<h2 id="structure-of-the-compiler">Structure of the compiler</h2>
-<p>The compiler is probably the most complicated one in the entire
-system. Generally, compilers are divided into several phases, or passes.
-(Though very few compilers have only one pass)</p>
-<p>Let’s take a typical two-pass compiler for example. The first pass,
-also known as the front end, consists of the following parts:</p>
-<ul>
-<li>Lexical Analyzer(a.k.a scanner)</li>
-<li>Parser</li>
-<li>Code Generator</li>
-</ul>
-<p>The lexical analyzer breaks the source code into lexemes, and
-generates a token for each lexeme. The sequence of tokens will be fed to
-the parser, which builds a tree based on these tokens to represent the
-structure of the entire program. Eventually, the code generator
-generates code in an intermediate language(which is similar to assembly
-language, but it’s slightly different).</p>
-<p>The reason why this pass is called front end is that the code
-generated is platform-independent. That means the same source code
-always produces the same intermediate code, regardless of your
-machine.</p>
-<p>The second pass actually turns the intermediate representation of the
-program into assembly code, it includes:</p>
-<ul>
-<li>Optimizer</li>
-<li>Back End</li>
-</ul>
-<p>The optimizer takes the intermediate code and performs some
-optimization, and finally the back end converts it into assembly
-code.</p>
-<p>There’s an obvious advantage of having two passes rather than only
-one. It’s that we can create different front ends for multiple
-high-level languages(e.g. c, c++, etc.), and these front ends can share
-the same back end because all of them generate intermediate language
-code. Similarly, we can also implement different back ends for different
-machines, and they can work without changing the front end.</p>
-<p><img src="/images/intro_compiler_fig2.png" /></p>
+<h3 id="i-type">I-Type</h3>
+<p>Most arithemetic instructions also have a varient which takes
+immediate (constant) number instead of register as operand. For
+example,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addi x9, x9, 1</span><br></pre></td></tr></table></figure>
+<p>means add 1 to the register x9, which gives us the following machine
+code</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000000000101001000010010010011</span><br></pre></td></tr></table></figure>
+<p><img src="/image/ISA-Itype.png" /></p>
+<p>We notice that the field <code>rs2</code> and <code>funct7</code> are
+now replaced with <code>imm</code>, which stands for immediate number.
+In this case, this field has the value <span
+class="math inline">\((000000000001)_2 = 1\)</span>.</p>
+<h2 id="other-arthimetic-instructions">Other Arthimetic
+Instructions</h2>
+<p>THe rest arthimetic instructions supported by RV32I are rather
+common, including <code>add</code>, <code>sub</code>, <code>xor</code>,
+<code>or</code>, <code>and</code>, <code>sll</code>(shift left logical),
+<code>srl</code>(shift right logical), <code>sra</code>(shift right
+arhithemetic), <code>slt</code>(set less than), and
+<code>sltu</code>(set less than unsigned). (Surely and their immediate
+version) While most names of instructions directly indicate their role,
+there are some of them need to be addressed.</p>
+<p>You might notice that there are two versions of shifting right, a
+logical one and a arithemetic one. The difference is that logical shift
+is equivalent to performing a unsigned division by <span
+class="math inline">\(2^n\)</span>, while the arithemetic one preserve
+the sign bit.</p>
+<p>For example, consider the following statements: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi x7, x0, -8</span><br><span class="line">srli x8, x7, 1</span><br></pre></td></tr></table></figure></p>
+<p>The representation of -8 is <span
+class="math inline">\((11111...1111000)_2\)</span>, after logical right
+shift, it becomes <span
+class="math inline">\((01111...111100)_2\)</span>. This example clearly
+shows that logical shift does not work with signed number. However, the
+arithemetic one gives us <span class="math inline">\((11111...111100)_2
+= (-4)_{10}\)</span>, which is exactly what we want.</p>
+<p>The <code>slt</code> (Set Less Than) instruction sets its resultant
+register to 1 when <span class="math inline">\(rs1 &lt; rs2\)</span>,
+otherwise it's set to zero. This instruction is used to implement
+relation operators, but it cannot change the control flow.</p>
 
     </div>
 
@@ -355,21 +432,19 @@ machines, and they can work without changing the front end.</p>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Compiler-Design/" rel="tag"># Compiler Design</a>
+              <a href="/tags/RISC-V/" rel="tag"># RISC-V</a>
+              <a href="/tags/ISA/" rel="tag"># ISA</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/06/05/Lexical-Analysis-The-Basics/" rel="prev" title="Lexical Analysis: The Basics">
-                  <i class="fa fa-angle-left"></i> Lexical Analysis: The Basics
+                <a href="/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/" rel="prev" title="A Glance at RISC-V: A Beginner's Perspective">
+                  <i class="fa fa-angle-left"></i> A Glance at RISC-V: A Beginner's Perspective
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/06/25/Some-Tips-for-PostgreSQL-Beginners/" rel="next" title="Some Tips for PostgreSQL Beginners">
-                  Some Tips for PostgreSQL Beginners <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

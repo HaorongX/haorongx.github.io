@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -165,7 +165,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,6 +187,242 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/03/Arthimetic-Instructions-in-RV32I/" class="post-title-link" itemprop="url">Basic Arithimetic Instructions in RV32I</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-11-03 17:30:26" itemprop="dateCreated datePublished" datetime="2024-11-03T17:30:26+08:00">2024-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-11-10 19:47:06" itemprop="dateModified" datetime="2024-11-10T19:47:06+08:00">2024-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RISC-V/" itemprop="url" rel="index"><span itemprop="name">RISC-V</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>As introduced in the previous article, RISC-V ISA consists of a basic
+ISA and multiple extensions. The instruction set called
+<strong>RV32I</strong> is exactly the basic one. The instructions
+defined in RV32I can be mainly classified into 4 types, which perform
+interger computation, loading, storing, and control transfer.</p>
+<h2 id="risc-v-registers">RISC-V Registers</h2>
+<p>A register is a component in CPU that stores very limited amount of
+data. Their sizes are usually very small, but have a great I/O speed.
+Each register has its distinct role so make sure not to mess them up and
+use appropriate register.</p>
+<p>Typically, a RISC-V processor has the following registers:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Address</th>
+<th>a.k.a</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>x0</td>
+<td>Zero</td>
+<td>Hardwired zero</td>
+</tr>
+<tr class="even">
+<td>x1</td>
+<td>ra</td>
+<td>Returne address</td>
+</tr>
+<tr class="odd">
+<td>x2</td>
+<td>sp</td>
+<td>Stack Pointer</td>
+</tr>
+<tr class="even">
+<td>x3</td>
+<td>gp</td>
+<td>Global Pointer</td>
+</tr>
+<tr class="odd">
+<td>x4</td>
+<td>tp</td>
+<td>Thread Pointer</td>
+</tr>
+<tr class="even">
+<td>x5 ~ x7</td>
+<td>t0 ~ t2</td>
+<td>Temporary</td>
+</tr>
+<tr class="odd">
+<td>x8</td>
+<td>s0 or fp</td>
+<td>Frame Pointer</td>
+</tr>
+<tr class="even">
+<td>x9</td>
+<td>s1</td>
+<td>Saved Register</td>
+</tr>
+<tr class="odd">
+<td>x10 ~ x17</td>
+<td>a0 ~ a7</td>
+<td>Function Argument</td>
+</tr>
+<tr class="even">
+<td>x18 ~ x27</td>
+<td>s2 ~ s11</td>
+<td>Saved Register</td>
+</tr>
+<tr class="odd">
+<td>x28 ~ x31</td>
+<td>t3 ~ t6</td>
+<td>Temporary</td>
+</tr>
+<tr class="even">
+<td>N/A</td>
+<td>pc</td>
+<td>Program Counter</td>
+</tr>
+</tbody>
+</table>
+<h2 id="instruction-format">Instruction Format</h2>
+<h3 id="r-type">R-Type</h3>
+<p>This group of instructions mainly perform basic computation,
+including arithmetic, logical, and shift(i.e. shift left) computation.
+They can take two 32-bit registers as operands and write the result to
+another 32-bit register. Here is an example:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add x10, x8, x9</span><br></pre></td></tr></table></figure>
+<p>This instruction adds values stored in register x8 and x9, then write
+their sum to register x10.</p>
+<p>If you compile this assembly instruction you'll see something like
+this, which is the machine code (binary representation) of this
+instruction:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000000100101000000010100110011</span><br></pre></td></tr></table></figure>
+<p>The <code>add</code> instruction is of <strong>R-type</strong>, which
+is the type of instructions that take two registers as operands, it is
+encoded in such a way:</p>
+<p><img src="/images/ISA1-R-Type.png" /></p>
+<p>The image shows that the machine code includes 6 parts, which
+are:</p>
+<ul>
+<li>rd: This field gives where the result should be stored. Since we
+specified the result should go to x10, this field has the value <span
+class="math inline">\((01010)_2 = (10)_{10}\)</span>.</li>
+<li>rs1 &amp; rs2: These two fields specifie the operands, in this case,
+they are x8(<span class="math inline">\((01000)_2 = (8)_{10}\)</span>)
+and x9((<span class="math inline">\((01001)_2 = (9)_{10}\)</span>))
+respectively.</li>
+<li>opcode, funct3, funct7: They work together to state which
+instruction it is, which is <code>add</code> in this case.</li>
+</ul>
+<h3 id="i-type">I-Type</h3>
+<p>Most arithemetic instructions also have a varient which takes
+immediate (constant) number instead of register as operand. For
+example,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addi x9, x9, 1</span><br></pre></td></tr></table></figure>
+<p>means add 1 to the register x9, which gives us the following machine
+code</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000000000101001000010010010011</span><br></pre></td></tr></table></figure>
+<p><img src="/image/ISA-Itype.png" /></p>
+<p>We notice that the field <code>rs2</code> and <code>funct7</code> are
+now replaced with <code>imm</code>, which stands for immediate number.
+In this case, this field has the value <span
+class="math inline">\((000000000001)_2 = 1\)</span>.</p>
+<h2 id="other-arthimetic-instructions">Other Arthimetic
+Instructions</h2>
+<p>THe rest arthimetic instructions supported by RV32I are rather
+common, including <code>add</code>, <code>sub</code>, <code>xor</code>,
+<code>or</code>, <code>and</code>, <code>sll</code>(shift left logical),
+<code>srl</code>(shift right logical), <code>sra</code>(shift right
+arhithemetic), <code>slt</code>(set less than), and
+<code>sltu</code>(set less than unsigned). (Surely and their immediate
+version) While most names of instructions directly indicate their role,
+there are some of them need to be addressed.</p>
+<p>You might notice that there are two versions of shifting right, a
+logical one and a arithemetic one. The difference is that logical shift
+is equivalent to performing a unsigned division by <span
+class="math inline">\(2^n\)</span>, while the arithemetic one preserve
+the sign bit.</p>
+<p>For example, consider the following statements: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi x7, x0, -8</span><br><span class="line">srli x8, x7, 1</span><br></pre></td></tr></table></figure></p>
+<p>The representation of -8 is <span
+class="math inline">\((11111...1111000)_2\)</span>, after logical right
+shift, it becomes <span
+class="math inline">\((01111...111100)_2\)</span>. This example clearly
+shows that logical shift does not work with signed number. However, the
+arithemetic one gives us <span class="math inline">\((11111...111100)_2
+= (-4)_{10}\)</span>, which is exactly what we want.</p>
+<p>The <code>slt</code> (Set Less Than) instruction sets its resultant
+register to 1 when <span class="math inline">\(rs1 &lt; rs2\)</span>,
+otherwise it's set to zero. This instruction is used to implement
+relation operators, but it cannot change the control flow.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

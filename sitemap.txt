@@ -1,3 +1,4 @@
+https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/
 https://haorongx.github.io/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/
 https://haorongx.github.io/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/
 https://haorongx.github.io/2024/08/17/Intro-to-Relational-Model-Relational-Algebra-Where-journey-begins/
@@ -12,6 +13,7 @@ https://haorongx.github.io/categories/index.html
 https://haorongx.github.io/
 https://haorongx.github.io/tags/RISC-V/
 https://haorongx.github.io/tags/Computer-Organization/
+https://haorongx.github.io/tags/ISA/
 https://haorongx.github.io/tags/DBMS/
 https://haorongx.github.io/tags/Storage/
 https://haorongx.github.io/tags/Column-Oriented-Storage/
