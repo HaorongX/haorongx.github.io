@@ -171,7 +171,7 @@ example,</p>
 <p>means add 1 to the register x9, which gives us the following machine
 code</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">00000000000101001000010010010011</span><br></pre></td></tr></table></figure>
-<p><img src="/image/ISA-Itype.png" /></p>
+<p><img src="/images/ISA-Itype.png" /></p>
 <p>We notice that the field <code>rs2</code> and <code>funct7</code> are
 now replaced with <code>imm</code>, which stands for immediate number.
 In this case, this field has the value <span

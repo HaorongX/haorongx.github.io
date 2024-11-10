@@ -27,9 +27,9 @@
 <meta property="og:description" content="As introduced in the previous article, RISC-V ISA consists of a basic ISA and multiple extensions. The instruction set called RV32I is exactly the basic one. The instructions defined in RV32I can be m">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://haorongx.github.io/images/ISA1-R-Type.png">
-<meta property="og:image" content="https://haorongx.github.io/image/ISA-Itype.png">
+<meta property="og:image" content="https://haorongx.github.io/images/ISA-Itype.png">
 <meta property="article:published_time" content="2024-11-03T09:30:26.000Z">
-<meta property="article:modified_time" content="2024-11-10T11:47:06.082Z">
+<meta property="article:modified_time" content="2024-11-10T11:51:41.825Z">
 <meta property="article:author" content="Haorong Xu">
 <meta property="article:tag" content="RISC-V">
 <meta property="article:tag" content="ISA">
@@ -243,7 +243,7 @@ Instructions</span></a></li></ol></div>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-11-10 19:47:06" itemprop="dateModified" datetime="2024-11-10T19:47:06+08:00">2024-11-10</time>
+      <time title="Modified: 2024-11-10 19:51:41" itemprop="dateModified" datetime="2024-11-10T19:51:41+08:00">2024-11-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -391,7 +391,7 @@ example,</p>
 <p>means add 1 to the register x9, which gives us the following machine
 code</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00000000000101001000010010010011</span><br></pre></td></tr></table></figure>
-<p><img src="/image/ISA-Itype.png" /></p>
+<p><img src="/images/ISA-Itype.png" /></p>
 <p>We notice that the field <code>rs2</code> and <code>funct7</code> are
 now replaced with <code>imm</code>, which stands for immediate number.
 In this case, this field has the value <span
