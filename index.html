@@ -154,18 +154,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -187,6 +187,413 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://haorongx.github.io/2025/01/04/Intro-to-Decision-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/103825064?v=4">
+      <meta itemprop="name" content="Haorong Xu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Haorong's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/01/04/Intro-to-Decision-Tree/" class="post-title-link" itemprop="url">Intro to Decision Tree</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-01-04 15:36:33" itemprop="dateCreated datePublished" datetime="2025-01-04T15:36:33+08:00">2025-01-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-01-30 23:03:35" itemprop="dateModified" datetime="2025-01-30T23:03:35+08:00">2025-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="glossary">Glossary</h2>
+<ul>
+<li>Supervised Learning <span class="math inline">\(^{[1, 2]}\)</span>:
+An machine learning apporach in which <strong>labeled</strong> data is
+used. Labeled data tells the model what a correct output should be
+(supervised), which enables the model to minimize the error and produce
+desired output.</li>
+<li>Unsupervised Learning: On the other hand, unsupervised learning uses
+<strong>unlabeled</strong> data (i.e. No additional guidance, therefore
+unsupervised). The model then tries to find the similarities or hidden
+patterns in input data.</li>
+<li>Classification <span class="math inline">\(^{[3]}\)</span>:
+Classification is a typical task of supervised learning, which is
+predicting a <strong>categorical value</strong>.</li>
+<li>Regression: As another task of supervised learning, regression aims
+to predict a <strong>continuous numerical value</strong>.</li>
+</ul>
+<h2 id="intro">Intro</h2>
+<p>Decision tree is an supervised learning algorithm that can carry out
+both classification and regression. A decision tree consists of three
+types of nodes (just like any other trees), a root node, internal nodes,
+and leaf nodes. An internal node or root node represents a choice
+avaliable at the current point of the tree, leading to several mutually
+exclusive results, which are its children nodes <span
+class="math inline">\(^{[4]}\)</span>. Each leaf node represents a final
+outcome.</p>
+<figure>
+<img src="images/decisiontree1.png"
+alt="A decision tree to classify iPhone models" />
+<figcaption aria-hidden="true">A decision tree to classify iPhone
+models</figcaption>
+</figure>
+<p>It is worth highlighting that a decision tree can be a binary tree
+(in many cases), but not necessarily.</p>
+<p>Decision tree has several advantages, including ease to interpret,
+and low complexity (logarithm). However, there is a major drawback,
+overfitting. Overfitting is a common problem, which refers to that a
+model adapts too well to its training data but fails to make accurate
+prediction from any other data <span
+class="math inline">\(^{[5]}\)</span>.</p>
+<figure>
+<img src="images/decisiontree_overfit.png" alt="Overfitting" />
+<figcaption aria-hidden="true">Overfitting</figcaption>
+</figure>
+<p>As shown in the diagram above, each blue point represents a
+individual data in the trainning set, while the green line illustrates a
+good fit, the red curve is an example of overfitting. The red curve
+shows a polynomial function that fits perfectly to the training data,
+since it passes through every single blue point. However, it clearly
+fails to show the overall trend of the data, making it completely
+worthless. In contrast, the green line represents the data overall well,
+although some points are not on the line.</p>
+<p>For a decision tree, it can easily become overfit when it grows too
+large or complicated. Therefore, a widely used strategy to avoid
+overfitting is stopping the tree splitting when it is necessary. This
+strategy can be implemented by setting maximum depth, minimum records
+number per leaf node, etc. There is another technique called pruning, in
+which nodes with less information are removed, but we shall not discuss
+this technique in this article.</p>
+<h2 id="decision-tree-learning-algorithms">Decision Tree Learning
+Algorithms</h2>
+<p>There are several algorithms for constructing decision trees,
+including ID3, C4.5, CHAID, CRAT, and QUEST. In this article, we explore
+the well-know algorithm, ID3, in detail.</p>
+<h2 id="iterative-dichotomiser-3">Iterative Dichotomiser 3</h2>
+<p>The word 'Dichotomiser' refers to dividing things into two completely
+opposing ideas <span class="math inline">\(^{[6]}\)</span>. As its name
+suggests, ID3 typically creates a binary tree. However, it can also
+creates multi-way splits. ID3 builds the tree recursively in the
+following way <span class="math inline">\(^{[7]}\)</span>:</p>
+<ol type="1">
+<li>A <em>best</em> attribute is selected (based on <strong>information
+gain</strong>, or <strong>entropy</strong>, described in later section).
+This is done by a greedy approach, which means the attribute with least
+entropy or most information gain is selected.</li>
+<li>The dataset is then split based on its distinct value.</li>
+<li>For each subset, this process is repeated (recursion).</li>
+</ol>
+<p>It is worth noting that ID3 does not include a pruning part, although
+some of its variants (e.g. C4.5) does. Instead, ID3 avoids overfitting
+by setting stopping criteria.</p>
+<h3 id="information-gain-entropy">Information Gain &amp; Entropy</h3>
+<h4 id="entropy">Entropy</h4>
+<p>Entropy (denoted as <span class="math inline">\(H\)</span>) measures
+how uncertain or disordered the dataset is. Uncertainty in this case
+stands for how <strong>unpredictable</strong> the dataset is. For
+example, the probability of an asteroid colliding with the earth today
+is 0.00..1% so it's <strong>easy to predict</strong> that this event is
+not going to take place today which means low unpredictability (low
+entropy). In contrast, the probability of obtaining a head when tossing
+a unbiased coin is 50%, so there is a high uncertainty (high
+entropy).</p>
+<p>Entropy can be caculated as</p>
+<p><span class="math display">\[H(S) = - \sum^{n}_{i = 1} p_i \cdot
+log_2(p_i)\]</span></p>
+<p>where <span class="math inline">\(S\)</span> stands for the dataset
+<span class="math inline">\({\{c_1, c_2, c_3, ...\}}\)</span> and <span
+class="math inline">\(p\)</span> represents the
+<strong>proportion</strong> of the number of elements in class <span
+class="math inline">\(c_i\)</span> to the number of elements in dataset
+<span class="math inline">\(S\)</span> (i.e. Probability of this
+particular outcome).</p>
+<p>Entropy measures the weighted contribution of a certain class to the
+overall uncertainty of the dataset. Obviously, high proportion (common
+event) indicates low contribution to uncertainty, which is indicated in
+the formula by <span class="math inline">\(log_2(p_i)\)</span>. Given
+that <span class="math inline">\(0 &lt; p_i \leq 1\)</span>, <span
+class="math inline">\(log_2(p_i)\)</span> declines as <span
+class="math inline">\(p_i\)</span> rises, standing for lower
+contribution to entropy (vice versa). This result is then weighted by
+multiplying it by its proportion. Finally, since <span
+class="math inline">\(log_2(p_i) &lt; 0\)</span> in this case, a
+negative sign is added.</p>
+<h4 id="information-gain">Information Gain</h4>
+<p>Based on entropy, information gain is the expected reduction in an
+entropy because of sorting on an attribute <span
+class="math inline">\(^{[8]}\)</span>, defined as</p>
+<p><span class="math display">\[IG = H(S)-\sum^k_{j = 1}
+\frac{|S_j|}{|S|} \cdot H(S_j)\]</span></p>
+<p>Where <span class="math inline">\(S_j\)</span> stands for subsets of
+<span class="math inline">\(S\)</span> after splitting on a feature.</p>
+<p>Notice that this formula calculates the difference between the
+original entropy of the dataset and the summation of the entropy after
+the split, which can be summarized as <strong>the reduction in entropy
+after a split</strong>.</p>
+<h4 id="example">Example</h4>
+<p>The following table presents a dataset, consisting of students' study
+hours, with each record being labelled as either 'Pass' or 'Fail'.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Study Hours</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Fail</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Pass</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Fail</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Fail</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Pass</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Fail</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Pass</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Pass</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Pass</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Pass</td>
+</tr>
+</tbody>
+</table>
+<p>Total: 4 Fails, 6 Passes</p>
+<p>The original entropy before the split is</p>
+<p><span class="math display">\[H(S) = -(0.4 \times log_2(0.4) + 0.6
+\times log_2(0.6)) \approx 0.971\]</span></p>
+<p>After a split on study hour:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Study Hours</th>
+<th>Num. of Passes</th>
+<th>Num. of Fails</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\leq 5\)</span> hrs</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>$ &gt; 5 $ hrs</td>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>After the split, the aggregated entropy is</p>
+<p><span class="math display">\[ H(S) = -[ 0.5*(0.4 * log_2(0.4) + 0.6 *
+log_2(0.6)) + 0.5*(0.8 * log_2(0.8) + 0.2 * log_2(0.2)) ] \approx
+0.846\]</span></p>
+<p>Therefore, <span class="math inline">\(IG = 0.971 - 0.846 =
+0.125\)</span></p>
+<h3 id="implementation">Implementation</h3>
+<p>As described earlier, ID3 constructs a decision tree by splitting on
+a feature with greatest information gain recursively.</p>
+<p>In this article, we presents a decision tree that accepts only one
+numerical feature and a binary (true-or-false) label to illustrate the
+basic mechanism of decision tree.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log2</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">node</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, val = <span class="literal">None</span>, res = <span class="literal">None</span>, ltree = <span class="literal">None</span>, rtree = <span class="literal">None</span></span>):</span><br><span class="line">        <span class="variable language_">self</span>.val = val</span><br><span class="line">        <span class="variable language_">self</span>.res = res</span><br><span class="line">        <span class="variable language_">self</span>.ltree = ltree <span class="comment"># Left sub-tree indicates false</span></span><br><span class="line">        <span class="variable language_">self</span>.rtree = rtree <span class="comment"># Right side indicates true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">entropy</span>(<span class="params">data</span>):</span><br><span class="line">    cnt_true = <span class="number">0</span></span><br><span class="line">    cnt_false = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">            cnt_false += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cnt_true += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> cnt_true == <span class="number">0</span> <span class="keyword">or</span> cnt_false == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    total = <span class="built_in">len</span>(data)</span><br><span class="line">    <span class="keyword">return</span> -((cnt_true / total) * log2(cnt_true / total) + (cnt_false / total) * log2(cnt_false / total))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">build</span>(<span class="params">feature, label</span>): <span class="comment"># We assume feature is sorted in ascending order for convenience</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(label) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> node(res = label[<span class="number">0</span>])</span><br><span class="line">    max_ig = <span class="number">0</span></span><br><span class="line">    best_threshold = -<span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(feature, label)</span><br><span class="line">    original_entropy = entropy(label)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(feature)):</span><br><span class="line">        l_feature = feature[:i]</span><br><span class="line">        l_label = label[:i]</span><br><span class="line">        r_feature = feature[i:]</span><br><span class="line">        r_label = label[i:]</span><br><span class="line">        p = i / <span class="built_in">len</span>(feature)</span><br><span class="line">        new_entropy = p * entropy(l_label) + (<span class="number">1</span> - p) * entropy(r_label)</span><br><span class="line">        new_ig = original_entropy - new_entropy</span><br><span class="line">        <span class="keyword">if</span> new_ig &gt; max_ig:</span><br><span class="line">            max_ig = new_ig</span><br><span class="line">            best_threshold = i</span><br><span class="line">    <span class="keyword">if</span> max_ig == <span class="number">0</span>: <span class="comment"># This node is &#x27;pure&#x27;!</span></span><br><span class="line">        <span class="keyword">return</span> node(res = label[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> node(val = feature[best_threshold], ltree = build(feature[:best_threshold], label[:best_threshold]), rtree = build(feature[best_threshold:], label[best_threshold:]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">predict</span>(<span class="params">val, cur</span>):</span><br><span class="line">    <span class="keyword">if</span> cur.res != <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> cur.res</span><br><span class="line">    <span class="keyword">if</span> val &lt; cur.val:</span><br><span class="line">        <span class="keyword">return</span> predict(val, cur.ltree)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> predict(val, cur.rtree)</span><br></pre></td></tr></table></figure>
+<p>Using the example in the article, we can train our model by</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">study_hours = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line">result = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>] <span class="comment"># 0 = Fail, 1 = Pass</span></span><br><span class="line">decision_tree = build(study_hours, result)</span><br></pre></td></tr></table></figure>
+<p>Now we can use our decision tree to predict the exam result with
+study hour given:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">15</span>):</span><br><span class="line">    <span class="built_in">print</span>(i, predict(i, decision_tree))</span><br></pre></td></tr></table></figure>
+<p>The results turned out to be</p>
+<table>
+<thead>
+<tr class="header">
+<th>Study Hours</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] <em>Supervised versus unsupervised learning: What's the
+difference?</em>, IBM, <a
+target="_blank" rel="noopener" href="https://www.ibm.com/think/topics/supervised-vs-unsupervised-learning"
+class="uri">https://www.ibm.com/think/topics/supervised-vs-unsupervised-learning</a></li>
+<li>[2] <em>Supervised vs. unsupervised learning: What's the
+difference?</em>, Google Cloud, <a
+target="_blank" rel="noopener" href="https://cloud.google.com/discover/supervised-vs-unsupervised-learning"
+class="uri">https://cloud.google.com/discover/supervised-vs-unsupervised-learning</a></li>
+<li>[3] <em>What is the difference between classification and regression
+in supervised machine learning?</em>, Scribbr, <a
+target="_blank" rel="noopener" href="https://www.scribbr.com/frequently-asked-questions/what-is-the-difference-between-classification-and-regression-in-supervised-machine-learning"
+class="uri">https://www.scribbr.com/frequently-asked-questions/what-is-the-difference-between-classification-and-regression-in-supervised-machine-learning</a></li>
+<li>[4] Song, Yanyan and Ying Lu. <em>“Decision tree methods:
+applications for classification and prediction.”</em> Shanghai Archives
+of Psychiatry 27 (2015): 130 - 135</li>
+<li>[5] <em>What is overfitting</em>, IBM, <a
+target="_blank" rel="noopener" href="https://www.ibm.com/think/topics/overfitting"
+class="uri">https://www.ibm.com/think/topics/overfitting</a></li>
+<li>[6] <em>DICHOTOMIST</em>, Cambridge Dictionary</li>
+<li>[7] <em>Iterative Dichotomiser 3 (ID3) Algorithm From Scratch</em>,
+Geeks for Geeks, <a
+target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/iterative-dichotomiser-3-id3-algorithm-from-scratch/"
+class="uri">https://www.geeksforgeeks.org/iterative-dichotomiser-3-id3-algorithm-from-scratch/</a></li>
+<li>[8] <em>Handbook of Statistics</em>, Gangadhar Shobha, Shanta
+Rangaswamy, 2018, Elsevier, Volume 38, pp. 197 - 228, <a
+target="_blank" rel="noopener" href="https://doi.org/10.1016/bs.host.2018.07.004"
+class="uri">https://doi.org/10.1016/bs.host.2018.07.004</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1888,7 +2295,7 @@ class="math inline">\(T\)</span>, character by character. And by replace
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>

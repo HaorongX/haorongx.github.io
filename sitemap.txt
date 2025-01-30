@@ -1,3 +1,4 @@
+https://haorongx.github.io/2025/01/04/Intro-to-Decision-Tree/
 https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/
 https://haorongx.github.io/2024/11/02/A-Glance-at-RISC-V-A-Beginner-s-Perspective/
 https://haorongx.github.io/2024/08/10/The-Physical-Storage-of-PostgreSQL-Page-Layout/
@@ -17,6 +18,9 @@ https://haorongx.github.io/tags/ISA/
 https://haorongx.github.io/tags/DBMS/
 https://haorongx.github.io/tags/Storage/
 https://haorongx.github.io/tags/Column-Oriented-Storage/
+https://haorongx.github.io/tags/AI/
+https://haorongx.github.io/tags/Decision-Tree/
+https://haorongx.github.io/tags/Random-Forest/
 https://haorongx.github.io/tags/Relational-Algebra/
 https://haorongx.github.io/tags/Data-Model/
 https://haorongx.github.io/tags/Compiler-Design/
@@ -25,6 +29,7 @@ https://haorongx.github.io/tags/Lexical-Analysis/
 https://haorongx.github.io/tags/PostgreSQL/
 https://haorongx.github.io/categories/RISC-V/
 https://haorongx.github.io/categories/DBMS/
+https://haorongx.github.io/categories/AI/
 https://haorongx.github.io/categories/Compiler-Design/
 https://haorongx.github.io/categories/Algorithm-Data-Structure/
 https://haorongx.github.io/categories/DBMS/PostgreSQL/

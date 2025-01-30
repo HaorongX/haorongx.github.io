@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://haorongx.github.io/2025/01/04/Intro-to-Decision-Tree/</loc>
+    
+    <lastmod>2025-01-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://haorongx.github.io/2024/11/03/Arthimetic-Instructions-in-RV32I/</loc>
     
     <lastmod>2024-11-10</lastmod>
@@ -112,7 +121,7 @@
 
   <url>
     <loc>https://haorongx.github.io/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -120,84 +129,105 @@
   
   <url>
     <loc>https://haorongx.github.io/tags/RISC-V/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Computer-Organization/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/ISA/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/DBMS/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Storage/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Column-Oriented-Storage/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://haorongx.github.io/tags/AI/</loc>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://haorongx.github.io/tags/Decision-Tree/</loc>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://haorongx.github.io/tags/Random-Forest/</loc>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Relational-Algebra/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Data-Model/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Compiler-Design/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Algorithm/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/Lexical-Analysis/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/tags/PostgreSQL/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -206,42 +236,49 @@
   
   <url>
     <loc>https://haorongx.github.io/categories/RISC-V/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/DBMS/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://haorongx.github.io/categories/AI/</loc>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/Compiler-Design/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/Algorithm-Data-Structure/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/DBMS/PostgreSQL/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://haorongx.github.io/categories/Algorithm-Data-Structure/String/</loc>
-    <lastmod>2024-11-10</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
