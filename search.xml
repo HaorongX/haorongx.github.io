@@ -213,6 +213,145 @@ relation operators, but it cannot change the control flow.</p>
       </tags>
   </entry>
   <entry>
+    <title>Generating a Question Bank from Past Papers Automatically</title>
+    <url>/2025/05/17/Auto-Categorizing-Past-Papers/</url>
+    <content><![CDATA[<h2 id="motivation">Motivation</h2>
+<p>Recently I've been trying to preparing AS Level computer science
+(9618) exam. Like any other student, I start by testing myself with
+questions from past papers. Usually, I can find a topical question bank
+from websites like PapaCambridge or Physics And Math Tutor. However,
+there wasn't such a topical question bank for 9618, which persuaded me
+to create such a question bank myself. This inspired me to utilize
+computer to automatically process past papers.</p>
+<h2 id="getting-started-identify-requirements">Getting Started: Identify
+Requirements</h2>
+<p>I started by outlining clearly what I want, which is a question bank,
+with questions categorized into corresponding categories in the
+syllabus.</p>
+<p>This obviously requires seperating questions from the exam papers,
+which are some PDF files. After that, they should be categorized
+automatically and stored in a database. Finally, there should be a
+frontend in which users can browse questions and select some of them to
+make a new paper, along with their answers.</p>
+<h2 id="separating-questions">Separating Questions</h2>
+<p>The very first step would be separating questions from PDF files,
+which appeared complicated to me. Fortunately, there are some features
+of these PDF files that make this job a lot easier.</p>
+<p><img src="/images/alp-sample-page-1.png" /></p>
+<p>I found that the question index (1, 2, 3, etc.) always appear in
+bold, as well as the index of subquestion (1(a), 1(b), etc.), and their
+horizontal location is fixed. Therefore, we can firstly remove any
+content in the page that is not in bold, and scans through all pixels
+around the locations that a index of question might occur.</p>
+<p>Separating bold content can be done by performing erosion followed by
+dilation. Erosion is an transformation that makes text 'thinner', so
+unbold text as it is pretty thin already. Subsequently, dilation makes
+text 'grow' back to their original size.</p>
+<p>Once we obtain the y - coordinate of the question index number, we
+can extract the content between two adjacent y - coordinates, which
+gives us the whole question. Meanwhile, we should remove all irelevent
+content in bold like page number, and convert the pdf file to an image
+for further processing.</p>
+<p>This method works most of the time, and produces images like
+this:</p>
+<p><img src="/images/alp_sample_q.png" /></p>
+<p>Unfortunately, there are some exceptions in which some irrelevent
+content "invades" where a question number should be, shown in the figure
+below:</p>
+<p><img src="/images/alp-inturder.png" /></p>
+<p>Therefore, I utilized OCR to ensure the content is a question number
+but not some random text. Combining all these ideas, we obtain the
+following code (simplified):</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">search_for_next_q</span>(<span class="params">images, start_page, start_y, QUESTION_INDEX_RANGE, mode, offset</span>): <span class="comment"># Search for the next question in bold, skip the current one indicated by start_page and start_y</span></span><br><span class="line"></span><br><span class="line">    current_page = start_page</span><br><span class="line">    current_y = start_y + offset <span class="comment"># This function is called in continuously so we skip the question found previously by adding an offset</span></span><br><span class="line">    <span class="keyword">while</span> current_page &lt; <span class="built_in">len</span>(images):</span><br><span class="line">        image = np.array(images[current_page])</span><br><span class="line">        binary_out = to_binary(image)</span><br><span class="line"></span><br><span class="line">        y1 = current_y</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        j = y1</span><br><span class="line">        <span class="keyword">while</span> j &lt; MAX_Y:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(...): <span class="comment"># Horizontal location of question number</span></span><br><span class="line">                <span class="keyword">if</span> binary_out[j][i]: <span class="comment">## Black AND is a question index</span></span><br><span class="line">                    section = binary_out[<span class="built_in">max</span>(j - <span class="number">20</span>, <span class="number">0</span>) : <span class="built_in">min</span>(j + <span class="number">80</span>, MAX_Y), <span class="number">0</span> : MAX_X]</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> re.search(<span class="string">r&quot;^\d&quot;</span>, image_to_string(section)) != <span class="literal">None</span>:</span><br><span class="line">                        y1 = j</span><br><span class="line">                        flag = <span class="literal">True</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        j += <span class="number">50</span> <span class="comment"># Irrelevent text, skip</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> flag:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            <span class="keyword">return</span> [current_page, y1]</span><br><span class="line">        </span><br><span class="line">        current_page += <span class="number">1</span> <span class="comment"># No question found, move on to the next page</span></span><br><span class="line">        current_y = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Finally, if no question is found, return the last page</span></span><br><span class="line">    <span class="keyword">return</span> [current_page - <span class="number">1</span>, MAX_Y]</span><br></pre></td></tr></table></figure>
+<p>Similarly, we can apply this approach to the mark scheme files. But
+instead of looking for bold text, we search for the rectangles that
+contain the answers to questions.</p>
+<p><img src="/images/alp-sample-ms.png" /></p>
+<h2 id="categorizing">Categorizing</h2>
+<p>In the categorizing process, a rather simple process is used. I asked
+ChatGPT to generate a list of keywords that are associated with each
+topic in the syllabus, which looks like this:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;Data Representation&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;AS_Level&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;1.1 Data Representation&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;complement&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;ASCII&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;Unicode&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;character set&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;binary&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;BCD&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;hexadecimal addition&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;binary addition&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;overflow&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;bibyte&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;1.2 Multimedia, Graphics, Sound&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;vector graphic&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;header&quot;</span><span class="punctuation">,</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<p>I simply run an OCR and then try to match any keyword present in the
+image, thereby categorizing each question.</p>
+<p>This process actually has a lot of drawbacks. Firstly, the output of
+OCR is usally pretty noisy, for example it might look like:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(iii) hexadecimal 23 in two’s complement representation is 00100011. the denary number\n10 needs to be subtracted from this value.\nsubtract the denary number 10 from the two’s complement representation 00100011.\ngive your answer in binary. show your working.\na av c0) 64 a pn cee\nanswef (in dinaly) «0... eeeeeeeeeeeeeeeteteeeeeeeteeeee\n[3]</span><br></pre></td></tr></table></figure>
+<p>In this case, some part of the keywords might be misinterpreted, like
+<code>F-E cycle</code> might become <code>FE cycle</code>, which leads
+to a failure of keywords match. I'm currently working on this issue by
+trying to train a model that can actually cluster these OCR outputs
+instead of just searching for some specific words.</p>
+<h2 id="storage">Storage</h2>
+<p>Afterwards, we come to the storage part. As there is a clear
+association among questions, answers, and topics, I decided to use
+relational database. As the dataset is not very large, SQLite is an
+ideal choice.</p>
+<p>Therefore, I created the following tables:</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 26%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Primary Key</th>
+<th>Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TOPICS</td>
+<td>topic_id</td>
+<td>main_topic_name, sub_topic_name, AS_or_A2</td>
+</tr>
+<tr class="even">
+<td>PAPERS</td>
+<td>paper_id</td>
+<td>year, series, paper, variant</td>
+</tr>
+<tr class="odd">
+<td>QUESTIONS</td>
+<td>question_id</td>
+<td>paper_id (FK), image, primary_index, secondary_index</td>
+</tr>
+<tr class="even">
+<td>MARKSCHEMES</td>
+<td>ms_id</td>
+<td>question_id (FK), image</td>
+</tr>
+<tr class="odd">
+<td>QUESTIONTOPICS</td>
+<td>(question_id, topic_id)</td>
+<td>question_id (FK), topic_id (FK)</td>
+</tr>
+</tbody>
+</table>
+<p>And then a simple python script can load all (pieces of) questions
+and answers into the database.</p>
+<h2 id="gui">GUI</h2>
+<p>Finally, a simple website serves as GUI, which is based on flask, and
+the outcome is like this:</p>
+<p><img src="/images/alp-final.png" /></p>
+<p>It allows to select questions from the question bank and create a new
+paper based on them. The paper is generated by appending images of these
+question to a html file encoded in base64, which is converted to a pdf
+file later.</p>
+<p>The outcome looks like this:</p>
+<p><img src="/images/alp-outcome.png" /></p>
+]]></content>
+      <categories>
+        <category>Web Development</category>
+      </categories>
+      <tags>
+        <tag>Project</tag>
+        <tag>Web Development</tag>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Column-stores vs. row-stores: how different are they really? : A Brief Summary</title>
     <url>/2024/08/10/Column-stores-vs-row-stores-how-different-are-they-really-A-Brief-Summary/</url>
     <content><![CDATA[<h2 id="background-introduction">Background &amp; Introduction</h2>
